@@ -1,5 +1,5 @@
 from tkinter import *
-from Tela_Principal import cadastro
+import cadastro
 
 janela = Tk()
 janela.geometry("1024x768")
@@ -23,7 +23,7 @@ def BtnBox(quarto,x,y):
   btnBox = Button(janela, text=quarto, font=(quarto, 25), bg="green", fg="white", width=5, height=2)
   btnBox.pack()
   btnBox.place(x=x,y=y)
-  cadastro()
+cadastro.cadastro()
 
 BtnBox("5A",475,150)
 BtnBox("5B",600,150)
