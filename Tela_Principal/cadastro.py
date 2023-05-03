@@ -1,1 +1,4 @@
-import Main
+import main
+
+def cadastro():
+    pass
