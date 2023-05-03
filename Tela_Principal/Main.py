@@ -1,3 +1,4 @@
+from ast import While
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
@@ -39,7 +40,11 @@ def windowRoom():
     #Ela está na data de Check in e Check out
     def pick_date(event):
       global cal, date_window
-      
+    
+    
+
+
+
       date_window =Toplevel()
       date_window.grab_set()
       date_window.title("Escolha uma data de check-in")
@@ -85,7 +90,8 @@ def windowRoom():
     radio_value=IntVar() 
     #Aqui estão as funçoes que aparecerem na tela de cadastro( labels e inputs)
     labelRoom = Label(screenRoom, bg="midnight blue",fg="white", width= 100, height=3).pack()
-    nameLabelRoom = Label(screenRoom, text="Quarto 1A:", font=("Quarto 1A:", 18), bg="midnight blue", fg="white")
+    quartos = ["5A", "5B", "5C", "5D","4A", "4B", "4C", "4D","3A", "3B", "3C", "3D","2A", "2B", "2C", "2D","1A", "1B", "1C", "1D",] 
+    nameLabelRoom = Label(screenRoom, text="quarto", font=("quarto", 18), bg="midnight blue", fg="white")
     nameLabelRoom.pack()
     nameLabelRoom.configure(font=Font_tuple)
     nameLabelRoom.place(x=10, y=12)
@@ -149,84 +155,30 @@ def windowRoom():
 #Aqui estão todos os botões da tela principal
 #Tentaremos colocar a função de criar novos botões de forma mais fácil.
 
-btnBox = Button(janela, text="5A", font=("5A", 25), bg="green", fg="white", width=5, height=2, command=windowRoom)
-btnBox.pack()
-btnBox.place(x=475, y=150)
+def BtnBox(quarto,x,y):
+  btnBox = Button(janela, text=quarto, font=(quarto, 25), bg="green", fg="white", width=5, height=2, command=windowRoom)
+  btnBox.pack()
+  btnBox.place(x=x,y=y)
 
-btnBox = Button(janela, text="5B", font=("5B", 25), bg="green", fg="white", width=5, height=2, command=windowRoom)
-btnBox.pack()
-btnBox.place(x=600, y=150)
-
-btnBox = Button(janela, text="5C", font=("5C", 25), bg="green", fg="white", width=5, height=2, command=windowRoom)
-btnBox.pack()
-btnBox.place(x=725, y=150)
-
-btnBox = Button(janela, text="5D", font=("5D", 25), bg="green", fg="white", width=5, height=2, command=windowRoom)
-btnBox.pack()
-btnBox.place(x=850, y=150)
-
-btnBox = Button(janela, text="4A", font=("4A", 25), bg="green", fg="white", width=5, height=2, command=windowRoom)
-btnBox.pack()
-btnBox.place(x=475, y=275)
-
-btnBox = Button(janela, text="4B", font=("4B", 25), bg="green", fg="white", width=5, height=2, command=windowRoom)
-btnBox.pack()
-btnBox.place(x=600, y=275)
-
-btnBox = Button(janela, text="4C", font=("4C", 25), bg="green", fg="white", width=5, height=2, command=windowRoom)
-btnBox.pack()
-btnBox.place(x=725, y=275)
-
-btnBox = Button(janela, text="4D", font=("4D", 25), bg="green", fg="white", width=5, height=2, command=windowRoom)
-btnBox.pack()
-btnBox.place(x=850, y=275)
-
-btnBox3A = Button(janela, text="3A", font=("3A", 25), bg="green", fg="white", width=5, height=2, command=windowRoom)
-btnBox3A.pack()
-btnBox3A.place(x=475, y=400)
-
-btnBox3B = Button(janela, text="3B", font=("3B", 25), bg="green", fg="white", width=5, height=2, command=windowRoom)
-btnBox3B.pack()
-btnBox3B.place(x=600, y=400)
-
-btnBox = Button(janela, text="3C", font=("3C", 25), bg="green", fg="white", width=5, height=2, command=windowRoom)
-btnBox.pack()
-btnBox.place(x=725, y=400)
-
-btnBox = Button(janela, text="3D", font=("3D", 25), bg="green", fg="white", width=5, height=2, command=windowRoom)
-btnBox.pack()
-btnBox.place(x=850, y=400)
-
-btnBox = Button(janela, text="2A", font=("2A", 25), bg="green", fg="white", width=5, height=2, command=windowRoom)
-btnBox.pack()
-btnBox.place(x=475, y=525)
-
-btnBox = Button(janela, text="2B", font=("2B", 25), bg="green", fg="white", width=5, height=2, command=windowRoom)
-btnBox.pack()
-btnBox.place(x=600, y=525)
-
-btnBox = Button(janela, text="2C", font=("2C", 25), bg="green", fg="white", width=5, height=2, command=windowRoom)
-btnBox.pack()
-btnBox.place(x=725, y=525)
-
-btnBox = Button(janela, text="2D", font=("2D", 25), bg="green", fg="white", width=5, height=2, command=windowRoom)
-btnBox.pack()
-btnBox.place(x=850, y=525)
-
-btnBox = Button(janela, text="1A", font=("1A", 25), bg="green", fg="white", width=5, height=2, command=windowRoom)
-btnBox.pack()
-btnBox.place(x=475, y=650)
-
-btnBox = Button(janela, text="1B", font=("1B", 25), bg="green", fg="white", width=5, height=2, command=windowRoom)
-btnBox.pack()
-btnBox.place(x=600, y=650)
-
-btnBox = Button(janela, text="1C", font=("1C", 25), bg="green", fg="white", width=5, height=2, command=windowRoom)
-btnBox.pack()
-btnBox.place(x=725, y=650)
-
-btnBox = Button(janela, text="1D", font=("1D", 25), bg="green", fg="white", width=5, height=2, command=windowRoom)
-btnBox.pack()
-btnBox.place(x=850, y=650)
+BtnBox("5A",475,150)
+BtnBox("5B",600,150)
+BtnBox("5C",725,150)
+BtnBox("5D",850,150)
+BtnBox("4A",475,275)
+BtnBox("4B",600,275)
+BtnBox("4C",725,275)
+BtnBox("4D",850,275)
+BtnBox("3A",475,400)
+BtnBox("3B",600,400)
+BtnBox("3C",725,400)
+BtnBox("3D",850,400)
+BtnBox("2A",475,525)
+BtnBox("2B",600,525)
+BtnBox("2C",725,525)
+BtnBox("2D",850,525)
+BtnBox("1A",475,650)
+BtnBox("1B",600,650)
+BtnBox("1C",725,650)
+BtnBox("1D",850,650)
 
 janela.mainloop()
