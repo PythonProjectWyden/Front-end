@@ -1,117 +1,134 @@
 from tkinter import *
 janela = Tk()
 
-def exibir():
-        if (cadastro.radio_value.get() == 1):
-            BtnBox.configure(bg="green")
-        elif (cadastro.radio_value.get() == 2):
-            BtnBox.configure(bg="red")
+rooms = ["1A","1B","1C","1D","2A","2B","2C","2D","3A","3B","3C","3D","4A","4B","4C","4D","5A","5B","5C","5D"]
 
-def BtnBox(quarto, x, y):
-    btnBox = Button(janela, text=quarto, font=(quarto, 25),bg="green", fg="white", width=5, height=2, command=cadastro)
-    btnBox.pack()
-    btnBox.place(x=x, y=y)
+class getter_setter:
+    def __init__(self,room):
+        self.set_room(room)
+        self.__room = room
 
-def Tela():
-    janela.geometry("1024x768")
-    janela.minsize(1024, 768)
-    janela.maxsize(1920, 1080)
-    janela.title("Tela de reservas")
-
-    rotuloDoTitulo = Label(janela, bg="dark blue", width=180, height=6)
-    rotuloDoTitulo.pack()
-
-    titulo1 = Label(janela, text="Wyden Hotel", font=("Wyden Hotel", 20), bg="dark blue", fg="white",)
-    titulo1.pack()
-    titulo1.place(x=640, y=25)
-
-    titulo2 = Label(janela, text="Quartos:", font=("Quartos", 18))
-    titulo2.pack()
-
-    BtnBox("5A", 475, 150)
-    BtnBox("5B", 600, 150)
-    BtnBox("5C", 725, 150)
-    BtnBox("5D", 850, 150)
-    BtnBox("4A", 475, 275)
-    BtnBox("4B", 600, 275)
-    BtnBox("4C", 725, 275)
-    BtnBox("4D", 850, 275)
-    BtnBox("3A", 475, 400)
-    BtnBox("3B", 600, 400)
-    BtnBox("3C", 725, 400)
-    BtnBox("3D", 850, 400)
-    BtnBox("2A", 475, 525)
-    BtnBox("2B", 600, 525)
-    BtnBox("2C", 725, 525)
-    BtnBox("2D", 850, 525)
-    BtnBox("1A", 475, 650)
-    BtnBox("1B", 600, 650)
-    BtnBox("1C", 725, 650)
-    BtnBox("1D", 850, 650)
-
-    janela.mainloop()
-
-#JANELA DE CADASTRO/CHECK-IN
-
-def cadastro():
-    screenRoom = Toplevel(janela)
-    screenRoom.geometry("525x450")
-    screenRoom.minsize(525, 450)
-    screenRoom.maxsize(525, 450)
-    screenRoom.title("Wyden Hotel")
-    Font_tuple = ("Writer", 20, "bold")
-
-    radio_value = IntVar()
-    # Aqui estão as funçoes que aparecerem na tela de cadastro( labels e inputs)
-    labelRoom = Label(screenRoom, bg="midnight blue",fg="white", width=100, height=3).pack()
+    def get_room(self):
+        return self.__room
     
-    nameLabelRoom = Label(screenRoom, text="Quarto 1A:", bg="midnight blue", fg="white")
-    nameLabelRoom.pack()
-    nameLabelRoom.configure(font=Font_tuple)
-    nameLabelRoom.place(x=10, y=12)
+    def set_room(self,room):
+        self.__room = room
+         
+class tela:
+    radio_value= IntVar()
 
-    labelPeriod = Label(screenRoom, text="Periódo de ocupação:",font=("Periódo de ocupação:", 18))
-    labelPeriod.pack()
-    labelPeriod.place(x=30, y=60)
+    def exibir(self):
+            if (self.radio_value.get() == 1):
+                self.configure(bg="green")
+            elif (self.radio_value.get() == 2):
+                self.configure(bg="red")
 
-    checkInLabel = Label(screenRoom, text="Check-in:", font=("Check-in", 15))
-    checkInLabel.pack()
-    checkInLabel.place(x=30, y=100)
+    @staticmethod
+    def BtnBox(quarto, x, y):
+        btnBox = Button(janela, text=quarto, font=(quarto, 25),bg="green", fg="white", width=5, height=2, command=lambda: tela.cadastro(quarto))
+        btnBox.pack()
+        btnBox.place(x=x, y=y)
 
-    checkInEntry = Entry(screenRoom, width=15, font=("calibri", 15))
-    checkInEntry.pack()
-    checkInEntry.place(x=30, y=140)
+    def Tela():
+        janela.geometry("1024x768")
+        janela.minsize(1024, 768)
+        janela.maxsize(1920, 1080)
+        janela.title("Tela de reservas")
 
-    checkOutLabel = Label(screenRoom, text="Check-out:",font=("Check-out", 15))
-    checkOutLabel.pack()
-    checkOutLabel.place(x=30, y=180)
+        rotuloDoTitulo = Label(janela, bg="dark blue", width=180, height=6)
+        rotuloDoTitulo.pack()
 
-    checkOutEntry = Entry(screenRoom, width=15, font=("calibri", 15))
-    checkOutEntry.pack()
-    checkOutEntry.place(x=30, y=220)
+        titulo1 = Label(janela, text="Wyden Hotel", font=("Wyden Hotel", 20), bg="dark blue", fg="white",)
+        titulo1.pack()
+        titulo1.place(x=640, y=25)
 
-    nameLabel = Label(screenRoom, text="Nome do hóspede:",font=("Nome do hóspede", 15))
-    nameLabel.pack()
-    nameLabel.place(x=30, y=260)
+        titulo2 = Label(janela, text="Quartos:", font=("Quartos", 18))
+        titulo2.pack()
 
-    nameEntry = Entry(screenRoom, width=22, font=("calibri", 15))
-    nameEntry.pack()
-    nameEntry.place(x=30, y=300)
+        tela.BtnBox("5A", 475, 150)
+        tela.BtnBox("5B", 600, 150)
+        tela.BtnBox("5C", 725, 150)
+        tela.BtnBox("5D", 850, 150)
+        tela.BtnBox("4A", 475, 275)
+        tela.BtnBox("4B", 600, 275)
+        tela.BtnBox("4C", 725, 275)
+        tela.BtnBox("4D", 850, 275)
+        tela.BtnBox("3A", 475, 400)
+        tela.BtnBox("3B", 600, 400)
+        tela.BtnBox("3C", 725, 400)
+        tela.BtnBox("3D", 850, 400)
+        tela.BtnBox("2A", 475, 525)
+        tela.BtnBox("2B", 600, 525)
+        tela.BtnBox("2C", 725, 525)
+        tela.BtnBox("2D", 850, 525)
+        tela.BtnBox("1A", 475, 650)
+        tela.BtnBox("1B", 600, 650)
+        tela.BtnBox("1C", 725, 650)
+        tela.BtnBox("1D", 850, 650)
 
-    cpfLabel = Label(screenRoom, text="CPF do hóspede:",font=("CPF do hóspede:", 15))
-    cpfLabel.pack()
-    cpfLabel.place(x=30, y=340)
+        janela.mainloop()
 
-    cpfEntry = Entry(screenRoom, width=22, font=("calibri", 15))
-    cpfEntry.pack()
-    cpfEntry.place(x=30, y=380)
+    #JANELA DE CADASTRO/CHECK-IN
 
-    radiobtn1 = Radiobutton(screenRoom, text="Vago", font=("Vago", 12), variable=radio_value, value=1)
-    radiobtn2 = Radiobutton(screenRoom, text="Ocupado", font=("Ocupado", 12), variable=radio_value, value=2)
-    radiobtn1.pack()
-    radiobtn1.place(x=380, y=130)
-    radiobtn2.pack()
-    radiobtn2.place(x=370, y=160)
-    btnChangeColor1A = Button(screenRoom, text="SALVAR", bg="black", fg="white", width=8, height=2, command=exibir)
-    btnChangeColor1A.pack()
-    btnChangeColor1A.place(x=380, y=190)
+    def cadastro(quarto):
+        screenRoom = Toplevel(janela)
+        screenRoom.geometry("525x450")
+        screenRoom.minsize(525, 450)
+        screenRoom.maxsize(525, 450)
+        screenRoom.title("Wyden Hotel")
+        Font_tuple = ("Writer", 20, "bold")
+
+        radio_value = IntVar()
+        # Aqui estão as funçoes que aparecerem na tela de cadastro( labels e inputs)
+        labelRoom = Label(screenRoom, bg="midnight blue",fg="white", width=100, height=3).pack()
+        
+        nameLabelRoom = Label(screenRoom, text="quarto: "+quarto, bg="midnight blue", fg="white")
+        nameLabelRoom.pack()
+        nameLabelRoom.configure(font=Font_tuple)
+        nameLabelRoom.place(x=10, y=12)
+
+        labelPeriod = Label(screenRoom, text="Periódo de ocupação:",font=("Periódo de ocupação:", 18))
+        labelPeriod.pack()
+        labelPeriod.place(x=30, y=60)
+
+        checkInLabel = Label(screenRoom, text="Check-in:", font=("Check-in", 15))
+        checkInLabel.pack()
+        checkInLabel.place(x=30, y=100)
+
+        checkInEntry = Entry(screenRoom, width=15, font=("calibri", 15))
+        checkInEntry.pack()
+        checkInEntry.place(x=30, y=140)
+
+        checkOutLabel = Label(screenRoom, text="Check-out:",font=("Check-out", 15))
+        checkOutLabel.pack()
+        checkOutLabel.place(x=30, y=180)
+
+        checkOutEntry = Entry(screenRoom, width=15, font=("calibri", 15))
+        checkOutEntry.pack()
+        checkOutEntry.place(x=30, y=220)
+
+        nameLabel = Label(screenRoom, text="Nome do hóspede:",font=("Nome do hóspede", 15))
+        nameLabel.pack()
+        nameLabel.place(x=30, y=260)
+
+        nameEntry = Entry(screenRoom, width=22, font=("calibri", 15))
+        nameEntry.pack()
+        nameEntry.place(x=30, y=300)
+
+        cpfLabel = Label(screenRoom, text="CPF do hóspede:",font=("CPF do hóspede:", 15))
+        cpfLabel.pack()
+        cpfLabel.place(x=30, y=340)
+
+        cpfEntry = Entry(screenRoom, width=22, font=("calibri", 15))
+        cpfEntry.pack()
+        cpfEntry.place(x=30, y=380)
+
+        radiobtn1 = Radiobutton(screenRoom, text="Vago", font=("Vago", 12), variable=radio_value, value=1)
+        radiobtn2 = Radiobutton(screenRoom, text="Ocupado", font=("Ocupado", 12), variable=radio_value, value=2)
+        radiobtn1.pack()
+        radiobtn1.place(x=380, y=130)
+        radiobtn2.pack()
+        radiobtn2.place(x=370, y=160)
+        btnChangeColor1A = Button(screenRoom, text="SALVAR", bg="black", fg="white", width=8, height=2, command=tela.exibir)
+        btnChangeColor1A.pack()
+        btnChangeColor1A.place(x=380, y=190)
