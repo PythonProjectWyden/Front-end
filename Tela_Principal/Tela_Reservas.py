@@ -87,7 +87,8 @@ class tela:
             cpf = cpfEntry.get()
             checkin = checkInEntry.get()
             checkout = checkOutEntry.get()
-            database.insert_room(checkin,0,cpf)
+            # test= radiobtn1.getboolean()
+            # database.insert_room(checkin,checkout,nome,test,cpf,quarto)
             screenRoom.destroy()
 
         radio_value = IntVar()
@@ -134,7 +135,7 @@ class tela:
         cpfEntry.pack()
         cpfEntry.place(x=30, y=380)
         radiobtn1 = Radiobutton(screenRoom, text="Vago", font=("Vago", 12), variable=radio_value, value=1)
-        radiobtn2 = Radiobutton(screenRoom, text="Ocupado", font=("Ocupado", 12), variable=radio_value, value=2)
+        radiobtn2 = Radiobutton(screenRoom, text="Ocupado", font=("Ocupado", 12), variable=radio_value, value=2)          
         radiobtn1.pack()
         radiobtn1.place(x=380, y=130)
         radiobtn2.pack()

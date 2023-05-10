@@ -1,8 +1,8 @@
 import sqlite3
 
 class RoomDB:
-    CREAT_ROOM_TABLE_QUERY = ('CREATE TABLE IF NOT EXISTS room(date text, occupied BOOLEAN,number int, CPF text)')  
-    INSERT_ROOM_QUERY = 'INSERT INTO room(date,occupied,number,CPF) VALUES (?,?,?,?)'
+    CREAT_ROOM_TABLE_QUERY = ('CREATE TABLE IF NOT EXISTS room(checkin text,checkout text,name text,number int, CPF text,room text)')  
+    INSERT_ROOM_QUERY = 'INSERT INTO room(checkin,checkout,name,number,CPF,room) VALUES (?,?,?,?,?,?)'
     UPDATE_DATE_ROOM_QUERY = 'UPDATE room SET date = ? WHERE CPF = ?'
     UPDATE_OCCUPIED_ROOM_QUERY = 'UPDATE room SET occupied = ? WHERE number = ?'
     SELECT_ROOM_QUERY = 'SELECT * FROM room WHERE CPF = ?'
@@ -14,9 +14,9 @@ class RoomDB:
         self.c = self.conect.cursor()
         self.c.execute(self.CREAT_ROOM_TABLE_QUERY)
         self.conect.commit()
-        
-    def insert_room(self,date,number,CPF):
-        self.c.execute(self.INSERT_ROOM_QUERY,(date,True,number,CPF))
+
+    def insert_room(self,checkin,checkout,name,number,CPF,room):
+        self.c.execute(self.INSERT_ROOM_QUERY,(checkin,checkout,name,number,CPF,room))
         self.conect.commit()
         
     def update_date_room(self,date,CPF):
