@@ -1,4 +1,5 @@
 import sqlite3
+from wsgiref.handlers import format_date_time
 
 class RoomDB:
     CREAT_ROOM_TABLE_QUERY = ('CREATE TABLE IF NOT EXISTS room(checkin date,checkout date,name text,number int, CPF text,room text)')  
@@ -8,6 +9,8 @@ class RoomDB:
     SELECT_ROOM_QUERY = 'SELECT * FROM room WHERE CPF = ?'
     SELECT_BY_DATE_AND_NUMBER_QUERY = 'SELECT * FROM room WHERE date = ? AND number = ?'
     DELETE_ROOM_QUERY = 'DELETE FROM room WHERE CPF = ?'
+    CONVERT_DATE_QUERY = 'format_date_time(sqlite3.Date as "dd/MM/yyyy")'
+
     
     def __init__(self):
         self.conect = sqlite3.connect("banco.db")

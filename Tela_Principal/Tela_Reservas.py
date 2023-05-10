@@ -33,6 +33,24 @@ class tela:
         btnBox.pack()
         btnBox.place(x=x, y=y)
 
+    @staticmethod
+    def DateBox():
+        checkInLabel = Label(janela, text="Check-in:", font=("Check-in", 15))
+        checkInLabel.pack()
+        checkInLabel.place(x=30, y=100)
+
+        checkInEntry = Entry(janela, width=15, font=("calibri", 15))
+        checkInEntry.pack()
+        checkInEntry.place(x=30, y=140)
+
+        checkOutLabel = Label(janela, text="Check-out:",font=("Check-out", 15))
+        checkOutLabel.pack()
+        checkOutLabel.place(x=30, y=180)
+
+        checkOutEntry = Entry(janela, width=15, font=("calibri", 15))
+        checkOutEntry.pack()
+        checkOutEntry.place(x=30, y=220)
+
     def Tela():
         janela.geometry("1024x768")
         janela.minsize(1024, 768)
@@ -48,6 +66,8 @@ class tela:
 
         titulo2 = Label(janela, text="Quartos:", font=("Quartos", 18))
         titulo2.pack()
+
+        tela.DateBox()
 
         tela.BtnBox("5A", 475, 150)
         tela.BtnBox("5B", 600, 150)
@@ -82,13 +102,12 @@ class tela:
         screenRoom.title("Wyden Hotel")
         Font_tuple = ("Writer", 20, "bold")
 
-        def save_data():
+        def save_data(checkInEntry,checkOutEntry):
             nome = nameEntry.get()
             cpf = cpfEntry.get()
             checkin = checkInEntry.get()
             checkout = checkOutEntry.get()
-            test= radio_value.get()
-            database.insert_room(checkin,checkout,nome,test,cpf,quarto)
+            database.insert_room(checkin,checkout,nome,1,cpf,quarto)
             screenRoom.destroy()
 
         radio_value = IntVar()
@@ -100,46 +119,20 @@ class tela:
         nameLabelRoom.configure(font=Font_tuple)
         nameLabelRoom.place(x=10, y=12)
 
-        labelPeriod = Label(screenRoom, text="Periódo de ocupação:",font=("Periódo de ocupação:", 18))
-        labelPeriod.pack()
-        labelPeriod.place(x=30, y=60)
-
-        checkInLabel = Label(screenRoom, text="Check-in:", font=("Check-in", 15))
-        checkInLabel.pack()
-        checkInLabel.place(x=30, y=100)
-
-        checkInEntry = Entry(screenRoom, width=15, font=("calibri", 15))
-        checkInEntry.pack()
-        checkInEntry.place(x=30, y=140)
-
-        checkOutLabel = Label(screenRoom, text="Check-out:",font=("Check-out", 15))
-        checkOutLabel.pack()
-        checkOutLabel.place(x=30, y=180)
-
-        checkOutEntry = Entry(screenRoom, width=15, font=("calibri", 15))
-        checkOutEntry.pack()
-        checkOutEntry.place(x=30, y=220)
-
         nameLabel = Label(screenRoom, text="Nome do hóspede:",font=("Nome do hóspede", 15))
         nameLabel.pack()
-        nameLabel.place(x=30, y=260)
+        nameLabel.place(x=30, y=100)
 
         nameEntry = Entry(screenRoom, width=22, font=("calibri", 15))
         nameEntry.pack()
-        nameEntry.place(x=30, y=300)
+        nameEntry.place(x=30, y=140)
 
         cpfLabel = Label(screenRoom, text="CPF do hóspede:",font=("CPF do hóspede:", 15))
         cpfLabel.pack()
-        cpfLabel.place(x=30, y=340)
+        cpfLabel.place(x=30, y=180)
         cpfEntry = Entry(screenRoom, width=22, font=("calibri", 15))
         cpfEntry.pack()
-        cpfEntry.place(x=30, y=380)
-        radiobtn1 = Radiobutton(screenRoom, text="Vago", font=("Vago", 12), variable=radio_value, value=1)
-        radiobtn2 = Radiobutton(screenRoom, text="Ocupado", font=("Ocupado", 12), variable=radio_value, value=0)          
-        radiobtn1.pack()
-        radiobtn1.place(x=380, y=130)
-        radiobtn2.pack()
-        radiobtn2.place(x=370, y=160)
+        cpfEntry.place(x=30, y=220)
         btnChangeColor1A = Button(screenRoom, text="SALVAR", bg="black", fg="white", width=8, height=2, command=lambda: save_data())
         btnChangeColor1A.pack()
         btnChangeColor1A.place(x=380, y=190)
