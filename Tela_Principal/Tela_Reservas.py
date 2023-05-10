@@ -1,18 +1,22 @@
 from tkinter import *
+from database import *
+
+database = RoomDB()
+
 janela = Tk()
 
 rooms = ["1A","1B","1C","1D","2A","2B","2C","2D","3A","3B","3C","3D","4A","4B","4C","4D","5A","5B","5C","5D"]
 
-class getter_setter:
-    def __init__(self,room):
-        self.set_room(room)
-        self.__room = room
+# class getter_setter:
+#     def __init__(self,room):
+#         self.set_room(room)
+#         self.__room = room
 
-    def get_room(self):
-        return self.__room
+#     def get_room(self):
+#         return self.__room
     
-    def set_room(self,room):
-        self.__room = room
+#     def set_room(self,room):
+#         self.__room = room
          
 class tela:
     radio_value= IntVar()
@@ -118,17 +122,24 @@ class tela:
         cpfLabel = Label(screenRoom, text="CPF do hóspede:",font=("CPF do hóspede:", 15))
         cpfLabel.pack()
         cpfLabel.place(x=30, y=340)
-
         cpfEntry = Entry(screenRoom, width=22, font=("calibri", 15))
         cpfEntry.pack()
         cpfEntry.place(x=30, y=380)
-
+        nome = nameEntry.get()
+        cpf = cpfEntry.get()
+        checkin = checkInEntry.get()
+        checkout = checkOutEntry.get()
         radiobtn1 = Radiobutton(screenRoom, text="Vago", font=("Vago", 12), variable=radio_value, value=1)
         radiobtn2 = Radiobutton(screenRoom, text="Ocupado", font=("Ocupado", 12), variable=radio_value, value=2)
         radiobtn1.pack()
         radiobtn1.place(x=380, y=130)
         radiobtn2.pack()
         radiobtn2.place(x=370, y=160)
-        btnChangeColor1A = Button(screenRoom, text="SALVAR", bg="black", fg="white", width=8, height=2, command=tela.exibir)
+        btnChangeColor1A = Button(screenRoom, text="SALVAR", bg="black", fg="white", width=8, height=2, command=database.insert_room(checkin,0,cpf))
         btnChangeColor1A.pack()
         btnChangeColor1A.place(x=380, y=190)
+        
+        
+        
+        
+    
