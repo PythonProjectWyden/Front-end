@@ -82,6 +82,14 @@ class tela:
         screenRoom.title("Wyden Hotel")
         Font_tuple = ("Writer", 20, "bold")
 
+        def save_data():
+            nome = nameEntry.get()
+            cpf = cpfEntry.get()
+            checkin = checkInEntry.get()
+            checkout = checkOutEntry.get()
+            database.insert_room(checkin,0,cpf)
+            screenRoom.destroy()
+
         radio_value = IntVar()
         # Aqui estão as funçoes que aparecerem na tela de cadastro( labels e inputs)
         labelRoom = Label(screenRoom, bg="midnight blue",fg="white", width=100, height=3).pack()
@@ -125,17 +133,13 @@ class tela:
         cpfEntry = Entry(screenRoom, width=22, font=("calibri", 15))
         cpfEntry.pack()
         cpfEntry.place(x=30, y=380)
-        nome = nameEntry.get()
-        cpf = cpfEntry.get()
-        checkin = checkInEntry.get()
-        checkout = checkOutEntry.get()
         radiobtn1 = Radiobutton(screenRoom, text="Vago", font=("Vago", 12), variable=radio_value, value=1)
         radiobtn2 = Radiobutton(screenRoom, text="Ocupado", font=("Ocupado", 12), variable=radio_value, value=2)
         radiobtn1.pack()
         radiobtn1.place(x=380, y=130)
         radiobtn2.pack()
         radiobtn2.place(x=370, y=160)
-        btnChangeColor1A = Button(screenRoom, text="SALVAR", bg="black", fg="white", width=8, height=2, command=database.insert_room(checkin,0,cpf))
+        btnChangeColor1A = Button(screenRoom, text="SALVAR", bg="black", fg="white", width=8, height=2, command=lambda: save_data())
         btnChangeColor1A.pack()
         btnChangeColor1A.place(x=380, y=190)
         
