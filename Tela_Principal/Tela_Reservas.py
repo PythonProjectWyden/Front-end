@@ -33,19 +33,19 @@ class tela:
 
         Label1 = tk.Label(root, text="Data Check-in:")
         Label1.pack()
-        Label1.place(x=30,y=300)
+        Label1.place(x=30,y=100)
 
         checkin_date = DateEntry(root, width=12, background='darkblue', foreground='white', borderwidth=2)
         checkin_date.pack(padx=10, pady=10)
-        checkin_date.place(x=30,y=325)
+        checkin_date.place(x=30,y=125)
 
         Label2 = tk.Label(root, text="Data Check-out:")
         Label2.pack()
-        Label2.place(x=30,y=350)
+        Label2.place(x=30,y=150)
 
         checkout_date = DateEntry(root, width=12, background='darkblue', foreground='white', borderwidth=2)
         checkout_date.pack(padx=10, pady=10)
-        checkout_date.place(x=30,y=375)
+        checkout_date.place(x=30,y=175)
 
         button = tk.Button(root, text="Get dates", command=get_dates)
         button.pack(pady=20)
@@ -134,8 +134,3 @@ class tela:
         btnChangeColor1A = Button(screenRoom, text="SALVAR", bg="black", fg="white", width=8, height=2, command=lambda: save_data())
         btnChangeColor1A.pack()
         btnChangeColor1A.place(x=380, y=190)
-        
-        
-        
-        
-    
