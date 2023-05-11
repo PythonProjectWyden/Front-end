@@ -1,23 +1,12 @@
 from tkinter import *
+import tkinter as tk
 from database import *
+from tkcalendar import Calendar
+from datetime import datetime 
 
 database = RoomDB()
-
 janela = Tk()
-
-rooms = ["1A","1B","1C","1D","2A","2B","2C","2D","3A","3B","3C","3D","4A","4B","4C","4D","5A","5B","5C","5D"]
-
-
-# class getter_setter:
-#     def __init__(self,room):
-#         self.set_room(room)
-#         self.__room = room
-
-#     def get_room(self):
-#         return self.__room
-    
-#     def set_room(self,room):
-#         self.__room = room
+calendario= Calendar(mindate = datetime(2023,1,1), maxdate = datetime(2023,12,31), showweeknumbers = False, showothermonthdays = False)
          
 class tela:
     radio_value= IntVar()
@@ -36,23 +25,26 @@ class tela:
 
     @staticmethod
     def DateBox():
-        checkInLabel = Label(janela, text="Check-in:", font=("Check-in", 15))
-        checkInLabel.pack()
-        checkInLabel.place(x=30, y=100)
+        def updateLabel():
+            data = calendario.get_date()
+            label.config(text="Data Selecionada: " + data)
+            
+        #checkOutLabel = Label(janela, text="Check-out:",font=("Check-out", 15))
+        #checkOutLabel.pack()
+        #checkOutLabel.place(x=30, y=180)
 
-        checkInEntry = Entry(janela, width=15, font=("calibri", 15))
-        checkInEntry.pack()
-        checkInEntry.place(x=30, y=140)
+        #checkOutEntry = Entry(janela, width=15, font=("calibri", 15))
+        #checkOutEntry.pack()
+        #checkOutEntry.place(x=30, y=220)
+        calendario.pack()
+        calendario.place(x=30, y=100)
 
-        checkOutLabel = Label(janela, text="Check-out:",font=("Check-out", 15))
-        checkOutLabel.pack()
-        checkOutLabel.place(x=30, y=180)
+        calendario.bind("<<CalendarSelected>>", updateLabel)
 
-        checkOutEntry = Entry(janela, width=15, font=("calibri", 15))
-        checkOutEntry.pack()
-        checkOutEntry.place(x=30, y=220)
+        label = tk.Label(text="Data Selecionada: ")
+        label.pack()
 
-    def Tela():
+    def Tela(): 
         janela.geometry("1024x768")
         janela.minsize(1024, 768)
         janela.maxsize(1920, 1080)
@@ -69,7 +61,6 @@ class tela:
         titulo2.pack()
 
         tela.DateBox()
-
         tela.BtnBox("5A", 475, 150)
         tela.BtnBox("5B", 600, 150)
         tela.BtnBox("5C", 725, 150)
@@ -103,11 +94,11 @@ class tela:
         screenRoom.title("Wyden Hotel")
         Font_tuple = ("Writer", 20, "bold")
 
-        def save_data(checkInEntry,checkOutEntry):
+        def save_data(data):
             nome = nameEntry.get()
             cpf = cpfEntry.get()
-            checkin = checkInEntry.get()
-            checkout = checkOutEntry.get()
+            checkin = data
+            checkout = data
             database.insert_room(checkin,checkout,nome,1,cpf,quarto)
             screenRoom.destroy()
 
