@@ -26,9 +26,10 @@ class tela:
     def DateBox():
         def get_dates():
             checkin = cal.selection
-            checkout = cal.get_date() + " 12:00:00"
+            checkout = cal.get_date() + "12:00:00"
             print("Data Check-in:", checkin)
             print("Data Check-out:", checkout)
+            database.check(checkin, checkout, 1)
         cal = Calendar(root, mindate = datetime(2023,1,1), maxdate = datetime(2023,12,31), showweeknumbers = False, showothermonthdays = False)
 
         Label1 = tk.Label(root, text="Data Check-in:")
@@ -100,12 +101,10 @@ class tela:
         screenRoom.title("Wyden Hotel")
         Font_tuple = ("Writer", 20, "bold")
 
-        def save_data(data):
+        def save_data():
             nome = nameEntry.get()
             cpf = cpfEntry.get()
-            checkin = data
-            checkout = data
-            database.insert_room(checkin,checkout,nome,1,cpf,quarto)
+            database.insert_room(nome,cpf,quarto)
             screenRoom.destroy()
 
         radio_value = IntVar()
