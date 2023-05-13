@@ -23,7 +23,11 @@ class RoomDB:
     def insert_room(self,name,number,CPF,occupied):
         self.c.execute(self.INSERT_ROOM_QUERY,(name,number,CPF,occupied))
         self.conect.commit()
-        
+
+    def insert_check(self,checking,checkout,cpf):
+        self.c.execute(self.INSERT_ROOM_QUERY,(checking,checkout,cpf))
+        self.conect.commit()    
+
     def update_date_room(self,chekin,cpf):
         self.c.execute(self.UPDATE_DATE_ROOM_QUERY,(chekin,cpf))
         self.conect.commit()
