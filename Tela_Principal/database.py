@@ -2,34 +2,35 @@ import sqlite3
 from wsgiref.handlers import format_date_time
 
 class RoomDB:
-    CREAT_CHECK_TABLE_QUERY=("CREATE TABLE IF NOT EXISTS check(checkin date,checkout date,cpf int primary key)")
-    CREAT_ROOM_TABLE_QUERY = ('CREATE TABLE IF NOT EXISTS room(name text,number int, CPF text primary key,occupied text)')  
-    INSERT_CHECK_TABLE_QUERY=("INSERT INTO CHECK(checkin,checkout,cpf) VALUES(?,?,?)")
-    INSERT_ROOM_QUERY = 'INSERT INTO room(name,number,CPF,room) VALUES (?,?,?,?)'
-    UPDATE_DATE_ROOM_QUERY = 'UPDATE check SET checkin = ? WHERE cpf = ?'
+    CREAT_CHECKS_TABLE_QUERY=("CREATE TABLE IF NOT EXISTS checks(check_in int,check_out int,cpf int primary key)")
+    CREAT_ROOM_TABLE_QUERY = ('CREATE TABLE IF NOT EXISTS room(name text, CPF text primary key,number text,occupied int)')  
+    INSERT_CHECKS_TABLE_QUERY=("INSERT INTO checks(check_in,check_out,cpf) VALUES(?,?,?)")
+    INSERT_ROOM_QUERY = 'INSERT INTO room(name,CPF,number,occupied) VALUES (?,?,?,?)'
+    UPDATE_DATE_ROOM_QUERY = 'UPDATE checks SET check_in = ? WHERE cpf = ?'
     UPDATE_OCCUPIED_ROOM_QUERY = 'UPDATE room SET occupied = ? WHERE number = ?'
     SELECT_ROOM_QUERY = 'SELECT * FROM room WHERE CPF = ?'
     SELECT_BY_DATE_AND_NUMBER_QUERY = 'SELECT occupied FROM room WHERE number = ?'
     DELETE_ROOM_QUERY = 'DELETE FROM room WHERE CPF = ?'
-    DELETE_CHECK_QUERY = 'DELETE FROM check WHERE CPF = ?'
+    DELETE_CHECKS_QUERY = 'DELETE FROM checks WHERE CPF = ?'
 
     
     def __init__(self):
         self.conect = sqlite3.connect("banco.db")
         self.c = self.conect.cursor()
         self.c.execute(self.CREAT_ROOM_TABLE_QUERY)
+        self.c.execute(self.CREAT_CHECKS_TABLE_QUERY)
         self.conect.commit()
 
-    def insert_room(self,name,number,CPF,occupied):
-        self.c.execute(self.INSERT_ROOM_QUERY,(name,number,CPF,occupied))
+    def insert_room(self,name,CPF,number,occupied):
+        self.c.execute(self.INSERT_ROOM_QUERY,(name,CPF,number,occupied))
         self.conect.commit()
 
-    def insert_check(self,checking,checkout,cpf):
-        self.c.execute(self.INSERT_ROOM_QUERY,(checking,checkout,cpf))
+    def insert_checks(self,check_in,check_out,cpf):
+        self.c.execute(self.INSERT_CHECKS_TABLE_QUERY,(check_in,check_out,cpf))
         self.conect.commit()    
 
-    def update_date_room(self,chekin,cpf):
-        self.c.execute(self.UPDATE_DATE_ROOM_QUERY,(chekin,cpf))
+    def update_date_room(self,check_in,cpf):
+        self.c.execute(self.UPDATE_DATE_ROOM_QUERY,(check_in,cpf))
         self.conect.commit()
         
     def update_occupied_room(self, number):
@@ -51,7 +52,7 @@ class RoomDB:
         self.conect.commit()
     
     def delete_room(self,CPF):
-        self.c.execute(self.DELETE_CHECK_QUERY,(CPF,))
+        self.c.execute(self.DELETE_CHECKS_QUERY,(CPF,))
         self.conect.commit()
         
     def __del__(self):

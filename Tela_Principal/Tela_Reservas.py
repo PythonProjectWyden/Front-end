@@ -3,68 +3,58 @@ import tkinter as tk
 from database import *
 from tkcalendar import Calendar, DateEntry
 from datetime import datetime 
+from telas import *
 
 database = RoomDB()
-root = tk.Tk()
          
 class tela:
+    checkin = checkout = checkindate = checkoutdate = None
     radio_value= IntVar()
 
-    def exibir(self):
-            if (self.radio_value.get() == 1):
-                self.configure(bg="green")
-            elif (self.radio_value.get() == 2):
-                self.configure(bg="red")
-
-    @staticmethod
-    def BtnBox(quarto, x, y):
-        btnBox = Button(root, text=quarto, font=(quarto, 25),bg="green", fg="white", width=5, height=2, command=lambda: tela.cadastro(quarto))
-        btnBox.pack()
-        btnBox.place(x=x, y=y)
 
     @staticmethod
     def DateBox():
-        def get_dates():
-            checkin = cal.selection
-            checkout = cal.get_date() + "12:00:00"
-            print("Data Check-in:", checkin)
-            print("Data Check-out:", checkout)
-            database.check(checkin, checkout, 1)
-        cal = Calendar(root, mindate = datetime(2023,1,1), maxdate = datetime(2023,12,31), showweeknumbers = False, showothermonthdays = False)
 
-        Label1 = tk.Label(root, text="Data Check-in:")
+        def update_checkin_date(date):
+            tela.checkindate = date
+
+        def update_checkout_date(date):
+            tela.checkoutdate = date
+
+        Label1 = tk.Label(telas.telaUm, text="Data Check-in:")
         Label1.pack()
         Label1.place(x=30,y=100)
 
-        checkin_date = DateEntry(root, width=12, background='darkblue', foreground='white', borderwidth=2)
+        checkin_date = DateEntry(telas.telaUm, width=12, background='darkblue', foreground='white', borderwidth=2, mindate = datetime(2023,1,1), maxdate = datetime(2023,12,31), showweeknumbers = False, showothermonthdays = False, command=update_checkin_date)
         checkin_date.pack(padx=10, pady=10)
         checkin_date.place(x=30,y=125)
+        tela.checkindate = checkin_date.get_date()
 
-        Label2 = tk.Label(root, text="Data Check-out:")
+        Label2 = tk.Label(telas.telaUm, text="Data Check-out:")
         Label2.pack()
         Label2.place(x=30,y=150)
 
-        checkout_date = DateEntry(root, width=12, background='darkblue', foreground='white', borderwidth=2)
+        checkout_date = DateEntry(telas.telaUm, width=12, background='darkblue', foreground='white', borderwidth=2, mindate = datetime(2023,1,1), maxdate = datetime(2023,12,31), showweeknumbers = False, showothermonthdays = False, command=update_checkout_date)
         checkout_date.pack(padx=10, pady=10)
         checkout_date.place(x=30,y=175)
+        tela.checkoutdate = checkout_date.get_date()
 
-        button = tk.Button(root, text="Get dates", command=get_dates)
-        button.pack(pady=20)
+    @staticmethod
+    def BtnBox(quarto, x, y):
+        btnBox = Button(telas.teladois, text=quarto, font=(quarto, 25),bg="green", fg="white", width=5, height=2, command=lambda: tela.cadastro(quarto))
+        btnBox.pack()
+        btnBox.place(x=x, y=y)
 
-    def Tela(): 
-        root.geometry("1024x768")
-        root.minsize(1024, 768)
-        root.maxsize(1920, 1080)
-        root.title("Tela de reservas")
+    def Tela():
 
-        rotuloDoTitulo = Label(root, bg="dark blue", width=180, height=6)
+        rotuloDoTitulo = Label(telas.teladois, bg="dark blue", width=180, height=6)
         rotuloDoTitulo.pack()
 
-        titulo1 = Label(root, text="Wyden Hotel", font=("Wyden Hotel", 20), bg="dark blue", fg="white",)
+        titulo1 = Label(telas.teladois, text="Wyden Hotel", font=("Wyden Hotel", 20), bg="dark blue", fg="white",)
         titulo1.pack()
         titulo1.place(x=640, y=25)
 
-        titulo2 = Label(root, text="Quartos:", font=("Quartos", 18))
+        titulo2 = Label(telas.teladois, text="Quartos:", font=("Quartos", 18))
         titulo2.pack()
 
         tela.DateBox()
@@ -89,12 +79,12 @@ class tela:
         tela.BtnBox("1C", 725, 650)
         tela.BtnBox("1D", 850, 650)
 
-        root.mainloop()
+        telas.telaUm.mainloop()
 
-    #root DE CADASTRO/CHECK-IN
+    #telas.teladois DE CADASTRO/CHECK-IN
 
     def cadastro(quarto):
-        screenRoom = Toplevel(root)
+        screenRoom = Toplevel(telas.teladois)
         screenRoom.geometry("525x450")
         screenRoom.minsize(525, 450)
         screenRoom.maxsize(525, 450)
@@ -104,17 +94,21 @@ class tela:
         def save_data():
             nome = nameEntry.get()
             cpf = cpfEntry.get()
-            database.insert_room(nome,cpf,quarto)
+            database.insert_room(nome, cpf, quarto, 1)
+            checkin = tela.checkindate
+            checkout = tela.checkoutdate
+            database.insert_checks(checkin, checkout, 1)
             screenRoom.destroy()
+            telas.teladois.destroy()
 
-        radio_value = IntVar()
-        # Aqui estão as funçoes que aparecerem na tela de cadastro( labels e inputs)
-        labelRoom = Label(screenRoom, bg="midnight blue",fg="white", width=100, height=3).pack()
-        
-        nameLabelRoom = Label(screenRoom, text="quarto: "+quarto, bg="midnight blue", fg="white")
+
+        rotuloDoTitulo = Label(screenRoom, bg="dark blue", width=180, height=6)
+        rotuloDoTitulo.pack()
+         
+        nameLabelRoom = Label(screenRoom, text="quarto: "+quarto,bg="dark blue" ,fg="white")
         nameLabelRoom.pack()
         nameLabelRoom.configure(font=Font_tuple)
-        nameLabelRoom.place(x=10, y=12)
+        nameLabelRoom.place(x=10, y=30)
 
         nameLabel = Label(screenRoom, text="Nome do hóspede:",font=("Nome do hóspede", 15))
         nameLabel.pack()
@@ -130,6 +124,7 @@ class tela:
         cpfEntry = Entry(screenRoom, width=22, font=("calibri", 15))
         cpfEntry.pack()
         cpfEntry.place(x=30, y=220)
-        btnChangeColor1A = Button(screenRoom, text="SALVAR", bg="black", fg="white", width=8, height=2, command=lambda: save_data())
-        btnChangeColor1A.pack()
-        btnChangeColor1A.place(x=380, y=190)
+        salvarDados = Button(screenRoom, text="SALVAR", bg="black", fg="white", width=8, height=2, command=lambda: save_data())
+        salvarDados.pack()
+        salvarDados.place(x=380, y=190)
+    
