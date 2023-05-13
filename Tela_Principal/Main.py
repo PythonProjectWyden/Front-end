@@ -1,4 +1,4 @@
 from tkinter import *
-from Tela_Reservas import tela
+from telaData import telasDeData
 
-tela.Tela()
+telasDeData.primeiraTela()
