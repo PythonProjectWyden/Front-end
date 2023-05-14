@@ -2,7 +2,7 @@ import sqlite3
 from wsgiref.handlers import format_date_time
 
 class RoomDB:
-    CREAT_CHECKS_TABLE_QUERY=("CREATE TABLE IF NOT EXISTS checks(check_in int,check_out int,cpf int primary key)")
+    CREAT_CHECKS_TABLE_QUERY=("CREATE TABLE IF NOT EXISTS checks(check_in date,check_out date,cpf text primary key)")
     CREAT_ROOM_TABLE_QUERY = ('CREATE TABLE IF NOT EXISTS room(name text, CPF text primary key,number text,occupied int)')  
     INSERT_CHECKS_TABLE_QUERY=("INSERT INTO checks(check_in,check_out,cpf) VALUES(?,?,?)")
     INSERT_ROOM_QUERY = 'INSERT INTO room(name,CPF,number,occupied) VALUES (?,?,?,?)'

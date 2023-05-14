@@ -7,12 +7,11 @@ import telaQuartos
 database = RoomDB()
 
 class telasDeData:
-
     def proxTela():
         telaQuartos.telasDeQuartos.segundaTela()
     
     def primeiraTela():
-
+        global checkin, checkout, array
         telaUm = tk.Tk()
         telaUm.geometry("300x300")
         telaUm.minsize(300, 300)
@@ -47,10 +46,18 @@ class telasDeData:
         checkout_date.place(x=100,y=200)
 
         continuar = Button(telaUm,text="Salvar Datas", bg="dark blue",fg="white", width=8, height=2,command=lambda: (telasDeData.proxTela(),
-                                                                                                                     telaUm.destroy()))
+                                                                                                                     salvarDados(),telaUm.destroy()))
         continuar.pack()
         continuar.place(x=120,y=250)
 
+        def salvarDados():
+            checkin = checkin_date.get_date()
+            checkout = checkout_date.get_date()
+            database.insert_checks(checkin,checkout,None)
+
         telaUm.mainloop()
+
+    async def returnCheck():
+        return await array
 
 

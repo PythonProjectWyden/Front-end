@@ -16,6 +16,7 @@ def cadastro(Quarto):
         nome = nameEntry.get()
         cpf = cpfEntry.get()
         database.insert_room(nome,cpf,str(Quarto),1)
+        database.insert_checks(None,None,cpf)
 
     rotuloDoTitulo = Label(telaTres, bg="dark blue", width=180, height=6)
     rotuloDoTitulo.pack()

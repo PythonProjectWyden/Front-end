@@ -11,5 +11,6 @@ class TelaDeResumo:
         telaQuatro.minsize(300, 300)
         telaQuatro.maxsize(300, 300)
         telaQuatro.title("Resumo")
+    
 
         
