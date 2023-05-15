@@ -94,6 +94,8 @@ class Cadastro:
                                                                                                                    telaTres.destroy(), telaDois.destroy()))
         salvarDados.pack()
         salvarDados.place(x=380, y=190)
+        
+        occupied = database.select_occupied(quarto,)
 
         def proxTela():
             telaResumo.TelaDeResumo.quartaTela()

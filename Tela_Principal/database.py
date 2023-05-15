@@ -47,6 +47,9 @@ class RoomDB:
         self.c.execute(self.SELECT_BY_DATE_AND_NUMBER_QUERY, (occupied, number))
         return self.c.fetchone()
     
+    def select_occupied(self,number,data):
+        self.c.execute("SELECT occupied FROM room WHERE number = ? AND date = ?", (number,data)).fetchone()[0]
+    
     def delete_room(self,CPF):
         self.c.execute(self.DELETE_ROOM_QUERY,(CPF,))
         self.conect.commit()
