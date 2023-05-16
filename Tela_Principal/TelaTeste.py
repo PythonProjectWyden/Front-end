@@ -29,7 +29,6 @@ class telasDeData:
         LabelTelaUm1 = tk.Label(telaUm, text="Data Check-in:")
         LabelTelaUm1.pack()
         LabelTelaUm1.place(x=100,y=130)
-
         checkin_date = DateEntry(telaUm, width=12, background='darkblue', foreground='white', borderwidth=2, mindate = datetime(2023,1,1),
                                   maxdate = datetime(2023,12,31), showweeknumbers = False, showothermonthdays = False)
         checkin_date.pack(padx=10, pady=10)
@@ -38,7 +37,6 @@ class telasDeData:
         LabelTelaUm2 = tk.Label(telaUm, text="Data Check-out:")
         LabelTelaUm2.pack()
         LabelTelaUm2.place(x=100,y=180)
-
         checkout_date = DateEntry(telaUm, width=12, background='darkblue', foreground='white', borderwidth=2, mindate = datetime(2023,1,1),
                                    maxdate = datetime(2023,12,31), showweeknumbers = False, showothermonthdays = False)
         checkout_date.pack(padx=10, pady=10)
@@ -96,9 +94,10 @@ class telasDeQuartos:
     
     @staticmethod
     def BtnBox(quarto, x, y,):
-            btnBox = Button(telaDois, text=quarto, font=(quarto, 25), bg="green", fg="white", width=5, height=2, command=lambda:Cadastro.cadastro(quarto))
-            btnBox.pack()
-            btnBox.place(x=x, y=y)
+        # occupied = selec
+        btnBox = Button(telaDois, text=quarto, font=(quarto, 25), bg="green", fg="white", width=5, height=2, command=lambda:Cadastro.cadastro(quarto))
+        btnBox.pack()
+        btnBox.place(x=x, y=y)
 
 
 class Cadastro:
@@ -111,6 +110,7 @@ class Cadastro:
         Font_tuple = ("Writer", 20, "bold")
 
         def save_data():
+            
             nome = nameEntry.get()
             cpf = cpfEntry.get()
             database.insert_room(nome,cpf,quarto,1)
