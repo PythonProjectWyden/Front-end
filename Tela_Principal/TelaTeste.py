@@ -5,7 +5,11 @@ from tkcalendar import DateEntry
 from datetime import datetime 
 database = RoomDB()
 
+checkinDentro = None
+checoutDentro = None
+
 class telasDeData:
+global checkinDentro, checkoutDentro
     def proxTela():
         telasDeQuartos.segundaTela()
     
