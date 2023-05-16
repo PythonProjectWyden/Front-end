@@ -40,6 +40,12 @@ class RoomDB:
         self.c.execute(self.SELECT_BY_DATE_AND_NUMBER_QUERY, (date, number))
         return self.c.fetchone()
     
+<<<<<<< Updated upstream
+=======
+    def select_occupied(self,room,data):
+        self.c.execute("SELECT occupied FROM room WHERE number = ? AND date = ?", (room,data)).fetchone()[0]
+    
+>>>>>>> Stashed changes
     def delete_room(self,CPF):
         self.c.execute(self.DELETE_ROOM_QUERY,(CPF,))
         self.conect.commit()
