@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 from tkinter import *
 from tkinter import ttk
 from tkinter import messagebox
@@ -771,3 +772,8 @@ btnBox1D.pack()
 btnBox1D.place(x=850, y=650)
 
 janela.mainloop()
+=======
+from TelaTeste import *
+
+telasDeData.primeiraTela()
+>>>>>>> Stashed changes
