@@ -7,11 +7,13 @@ from datetime import datetime
 database = RoomDB()
 
 class telasDeData:
-    def proxTela():
+    checkinDentro = None
+    checkoutDentro = None
+
+    def proxTelas():
         telaQuartos.telasDeQuartos.segundaTela()
-    
+  
     def primeiraTela():
-        global checkinDentro, checkoutDentro
         telaUm = tk.Tk()
         telaUm.geometry("300x300")
         telaUm.minsize(300, 300)
@@ -45,12 +47,10 @@ class telasDeData:
         checkout_date.pack(padx=10, pady=10)
         checkout_date.place(x=100,y=200)
 
-        continuar = Button(telaUm,text="Salvar Datas", bg="dark blue",fg="white", width=8, height=2,command=lambda: (telasDeData.proxTela(),
+        continuar = Button(telaUm,text="Salvar Datas", bg="dark blue",fg="white", width=8, height=2,command=lambda: (telasDeData.proxTelas(),
                                                                                                                      telaUm.destroy()))
         continuar.pack()
         continuar.place(x=120,y=250)
-        checkinDentro = checkin_date.get_date()
-        checkoutDentro = checkout_date.get_date()
 
         telaUm.mainloop()
 

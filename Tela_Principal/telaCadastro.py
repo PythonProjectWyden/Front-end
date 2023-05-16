@@ -14,8 +14,9 @@ def cadastro(Quarto):
     Font_tuple = ("Writer", 20, "bold")
 
     def save_data():
-        checkin = telasDeData.primeiraTela
-        checkout = telasDeData.returnCheckout()
+        checkin = telasDeData.checkinDentro
+        checkout = telasDeData.checkoutDentro
+        print("aaaaaaaaaaaaa")
         nome = nameEntry.get()
         cpf = cpfEntry.get()
         database.insert_room(nome,cpf,str(Quarto),1)

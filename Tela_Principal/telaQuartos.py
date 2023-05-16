@@ -90,12 +90,10 @@ class Cadastro:
         cpfEntry = Entry(telaTres, width=22, font=("calibri", 15))
         cpfEntry.pack()
         cpfEntry.place(x=30, y=220)
-        salvarDados = Button(telaTres, text="Resumo", bg="black", fg="white", width=8, height=2, command=lambda: (save_data(), proxTela(),
+        salvarDados = Button(telaTres, text="Resumo", bg="black", fg="white", width=8, height=2, command=lambda: (save_data(), ProxTela(),
                                                                                                                    telaTres.destroy(), telaDois.destroy()))
         salvarDados.pack()
         salvarDados.place(x=380, y=190)
-        
-        occupied = database.select_occupied(quarto,)
 
-        def proxTela():
+        def ProxTela():
             telaResumo.TelaDeResumo.quartaTela()
