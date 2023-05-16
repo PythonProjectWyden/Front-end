@@ -1,9 +1,9 @@
-from tkinter import *
 import tkinter as tk
-from database import *
-from tkcalendar import Calendar, DateEntry
-from datetime import datetime 
 import telaQuartos
+from tkinter import *
+from database import *
+from tkcalendar import DateEntry
+from datetime import datetime 
 database = RoomDB()
 
 class telasDeData:
@@ -11,7 +11,7 @@ class telasDeData:
         telaQuartos.telasDeQuartos.segundaTela()
     
     def primeiraTela():
-        global checkin, checkout, array
+        global checkinDentro, checkoutDentro
         telaUm = tk.Tk()
         telaUm.geometry("300x300")
         telaUm.minsize(300, 300)
@@ -46,18 +46,17 @@ class telasDeData:
         checkout_date.place(x=100,y=200)
 
         continuar = Button(telaUm,text="Salvar Datas", bg="dark blue",fg="white", width=8, height=2,command=lambda: (telasDeData.proxTela(),
-                                                                                                                     salvarDados(),telaUm.destroy()))
+                                                                                                                     telaUm.destroy()))
         continuar.pack()
         continuar.place(x=120,y=250)
-
-        def salvarDados():
-            checkin = checkin_date.get_date()
-            checkout = checkout_date.get_date()
-            database.insert_checks(checkin,checkout,None)
+        checkinDentro = checkin_date.get_date()
+        checkoutDentro = checkout_date.get_date()
 
         telaUm.mainloop()
 
-    async def returnCheck():
-        return await array
+
+
+
+
 
 

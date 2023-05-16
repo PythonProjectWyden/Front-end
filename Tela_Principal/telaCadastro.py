@@ -1,6 +1,7 @@
 from tkinter import *
 import tkinter as tk
 from database import *
+from telaData import telasDeData
 import telaResumo
 database = RoomDB()
 
@@ -13,10 +14,13 @@ def cadastro(Quarto):
     Font_tuple = ("Writer", 20, "bold")
 
     def save_data():
+        checkin = telasDeData.primeiraTela
+        checkout = telasDeData.returnCheckout()
         nome = nameEntry.get()
         cpf = cpfEntry.get()
         database.insert_room(nome,cpf,str(Quarto),1)
-        database.insert_checks(None,None,cpf)
+        database.insert_checks(checkin,checkout,cpf)
+
 
     rotuloDoTitulo = Label(telaTres, bg="dark blue", width=180, height=6)
     rotuloDoTitulo.pack()
