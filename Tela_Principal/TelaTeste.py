@@ -5,16 +5,11 @@ from tkcalendar import DateEntry
 from datetime import datetime 
 database = RoomDB()
 
-checkinDentro = None
-checoutDentro = None
-
 class telasDeData:
-global checkinDentro, checkoutDentro
     def proxTela():
         telasDeQuartos.segundaTela()
-    
+
     def primeiraTela():
-        global checkinDentro, checkoutDentro
         telaUm = tk.Tk()
         telaUm.geometry("300x300")
         telaUm.minsize(300, 300)
@@ -48,12 +43,11 @@ global checkinDentro, checkoutDentro
         checkout_date.pack(padx=10, pady=10)
         checkout_date.place(x=100,y=200)
 
+
         continuar = Button(telaUm,text="Salvar Datas", bg="dark blue",fg="white", width=8, height=2,command=lambda: (telasDeData.proxTela(),
                                                                                                                      telaUm.destroy()))
         continuar.pack()
         continuar.place(x=120,y=250)
-        checkinDentro = checkin_date.get_date()
-        checkoutDentro = checkout_date.get_date()
 
         telaUm.mainloop()
     
@@ -106,8 +100,7 @@ class telasDeQuartos:
 
 
 class Cadastro:
-     global checkinDentro,checkoutDentro
-     def cadastro(quarto):
+    def cadastro(quarto):
         telaTres = tk.Tk()
         telaTres.geometry("525x450")
         telaTres.minsize(525, 450)
@@ -118,7 +111,7 @@ class Cadastro:
         def save_data():
             nome = nameEntry.get()
             cpf = cpfEntry.get()
-            database.insert_room(nome,cpf,checkinDentro,checkoutDentro,quarto,1)
+            database.insert_room(nome,cpf,checkin,checkout,quarto,1)
 
         rotuloDoTitulo = Label(telaTres, bg="dark blue", width=180, height=6)
         rotuloDoTitulo.pack()
