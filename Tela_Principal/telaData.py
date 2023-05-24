@@ -12,11 +12,10 @@ class telasDeData:
 
     def primeiraTela(): 
         def saveDates():
-            with open('dates.txt', 'w') as f:
+            with open('dates.txt', 'a') as f:
                 checkin1 = checkin_date.get_date()
                 checkout1 = checkout_date.get_date()
-                f.write("checkin:{}\n".format(checkin1))
-                f.write("checkout:{}\n".format(checkout1))
+                f.write("{}:{}\n".format(checkin1,checkout1))
                 telaUm.destroy()
                 telasDeData.proxTelas()
 
