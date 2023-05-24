@@ -10,6 +10,16 @@ class telasDeData:
         telasDeQuartos.segundaTela()
     
     def primeiraTela():
+        def saveDates():
+            with open('dates.txt', 'a') as f:
+                global checkin1, checkout1
+                checkin1 = checkin_date
+                checkout1 = checkout_date
+                f.write("{}:{}\n".format(checkin1,checkout1))
+                # telaUm.destroy()
+                # telasDeData.proxTelas()
+                f.close()
+                
         global checkinDentro, checkoutDentro
         telaUm = tk.Tk()
         telaUm.geometry("300x300")
@@ -43,7 +53,7 @@ class telasDeData:
         checkout_date.place(x=100,y=200)
 
         continuar = Button(telaUm,text="Salvar Datas", bg="dark blue",fg="white", width=8, height=2,command=lambda: (telasDeData.proxTela(),
-                                                                                                                     telaUm.destroy()))
+                                                                                                                     telaUm.destroy(),saveDates()))
         continuar.pack()
         continuar.place(x=120,y=250)
         checkinDentro = checkin_date.get_date()
@@ -113,8 +123,8 @@ class Cadastro:
             
             nome = nameEntry.get()
             cpf = cpfEntry.get()
-            database.insert_room(nome,cpf,quarto,1)
-            database.insert_checks(checkinDentro,checkoutDentro,cpf)
+            database.insert_room(nome,checkin1,checkout1,cpf,quarto,1)
+            # database.insert_checks(checkinDentro,checkoutDentro,cpf)
 
         rotuloDoTitulo = Label(telaTres, bg="dark blue", width=180, height=6)
         rotuloDoTitulo.pack()
