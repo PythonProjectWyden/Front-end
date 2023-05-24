@@ -32,7 +32,7 @@ class RoomDB:
         self.conect.commit()
         
     def select_room(self,CPF):
-        self.c.execute(self.SELECT_ROOM_QUERY,(CPF,))
+        self.c.execute(self.SELECT_ROOM_QUERY,(CPF))
         return self.c.fetchall()
     
     def select_by_date_and_number(self, occupied, number):
