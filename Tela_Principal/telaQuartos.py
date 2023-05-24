@@ -63,11 +63,6 @@ class Cadastro:
         telaTres.title("Wyden Hotel")
         Font_tuple = ("Writer", 20, "bold")
 
-        def save_data():
-            nome = nameEntry.get()
-            cpf = cpfEntry.get()
-            database.insert_room(nome,cpf,quarto,1)
-
         rotuloDoTitulo = Label(telaTres, bg="dark blue", width=180, height=6)
         rotuloDoTitulo.pack()
             
@@ -90,7 +85,7 @@ class Cadastro:
         cpfEntry = Entry(telaTres, width=22, font=("calibri", 15))
         cpfEntry.pack()
         cpfEntry.place(x=30, y=220)
-        salvarDados = Button(telaTres, text="Resumo", bg="black", fg="white", width=8, height=2, command=lambda: (save_data(), ProxTela(),
+        salvarDados = Button(telaTres, text="Resumo", bg="black", fg="white", width=8, height=2, command=lambda: (ProxTela(),
                                                                                                                    telaTres.destroy(), telaDois.destroy()))
         salvarDados.pack()
         salvarDados.place(x=380, y=190)

@@ -5,7 +5,14 @@ from telaData import telasDeData
 import telaResumo
 database = RoomDB()
 
+
+
 def cadastro(Quarto):
+    with open('dates.txt', 'r') as f:
+        for lines in f.readlines():
+            checkin = lines.strip("\n").split(":")[1]
+            checkout = lines.strip("\n").split(":")[1]
+
     telaTres = tk.Tk()
     telaTres.geometry("525x450")
     telaTres.minsize(525, 450)
@@ -14,14 +21,9 @@ def cadastro(Quarto):
     Font_tuple = ("Writer", 20, "bold")
 
     def save_data():
-        checkin = telasDeData.checkinDentro
-        checkout = telasDeData.checkoutDentro
-        print("aaaaaaaaaaaaa")
         nome = nameEntry.get()
         cpf = cpfEntry.get()
-        database.insert_room(nome,cpf,str(Quarto),1)
-        database.insert_checks(checkin,checkout,cpf)
-
+        database.insert_room(nome,"2022-10-11","2022-10-11",cpf,str(Quarto),1)
 
     rotuloDoTitulo = Label(telaTres, bg="dark blue", width=180, height=6)
     rotuloDoTitulo.pack()
@@ -45,9 +47,10 @@ def cadastro(Quarto):
     cpfEntry = Entry(telaTres, width=22, font=("calibri", 15))
     cpfEntry.pack()
     cpfEntry.place(x=30, y=220)
+
     salvarDados = Button(telaTres, text="Resumo", bg="black", fg="white", width=8, height=2, command=lambda: (save_data(), proxTela()))
     salvarDados.pack()
     salvarDados.place(x=380, y=190)
 
-    def proxTela():
-        telaResumo.TelaDeResumo.quartaTela()
+def proxTela():
+    telaResumo.TelaDeResumo.quartaTela()
