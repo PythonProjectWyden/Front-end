@@ -2,9 +2,9 @@ import sqlite3
 from wsgiref.handlers import format_date_time
 
 class RoomDB:
-    CREAT_ROOM_TABLE_QUERY = ('CREATE TABLE IF NOT EXISTS room(name text,check_in text,check_out text, CPF text primary key,number text,occupied int)')  
+    CREAT_ROOM_TABLE_QUERY = ('CREATE TABLE IF NOT EXISTS room(name text,check_in date,check_out date,CPF text primary key,number text,occupied int)')  
     INSERT_ROOM_QUERY = 'INSERT INTO room(name,check_in,check_out,CPF,number,occupied) VALUES (?,?,?,?,?,?)'
-    UPDATE_DATE_ROOM_QUERY = 'UPDATE checks SET check_in = ? WHERE cpf = ?'
+    UPDATE_DATE_ROOM_QUERY = 'UPDATE room SET check_in = ? WHERE cpf = ?'
     UPDATE_OCCUPIED_ROOM_QUERY = 'UPDATE room SET occupied = ? WHERE number = ?'
     SELECT_ROOM_QUERY = 'SELECT * FROM room WHERE CPF = ?'
     SELECT_BY_DATE_AND_NUMBER_QUERY = 'SELECT occupied FROM room WHERE number = ?'
@@ -19,7 +19,7 @@ class RoomDB:
 
     def insert_room(self,name,check_in,check_out,CPF,number,occupied):
         self.c.execute(self.INSERT_ROOM_QUERY,(name,check_in,check_out,CPF,number,occupied))
-        self.conect.commit()  
+        self.conect.commit() 
 
     def update_date_room(self,check_in,cpf):
         self.c.execute(self.UPDATE_DATE_ROOM_QUERY,(check_in,cpf))
@@ -45,6 +45,7 @@ class RoomDB:
     def delete_room(self,CPF):
         self.c.execute(self.DELETE_ROOM_QUERY,(CPF,))
         self.conect.commit()
+
         
     def __del__(self):
         self.conect.close()

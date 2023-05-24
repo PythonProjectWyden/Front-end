@@ -1,17 +1,10 @@
 from tkinter import *
 import tkinter as tk
 from database import *
-from telaData import telasDeData
 import telaResumo
 database = RoomDB()
 
-
-
 def cadastro(Quarto):
-    with open('dates.txt', 'r') as f:
-        for lines in f.readlines():
-            checkin = lines.strip("\n").split(":")[1]
-            checkout = lines.strip("\n").split(":")[1]
 
     telaTres = tk.Tk()
     telaTres.geometry("525x450")
@@ -21,9 +14,13 @@ def cadastro(Quarto):
     Font_tuple = ("Writer", 20, "bold")
 
     def save_data():
+        with open('dates.txt', 'r') as f:
+            for lines in f.readlines():
+                checkin = lines.strip("\n").split(":")[1]
+                checkout = lines.strip("\n").split(":")[2]
         nome = nameEntry.get()
         cpf = cpfEntry.get()
-        database.insert_room(nome,"2022-10-11","2022-10-11",cpf,str(Quarto),1)
+        database.insert_room(nome,checkin,checkout,cpf,str(Quarto),1)
 
     rotuloDoTitulo = Label(telaTres, bg="dark blue", width=180, height=6)
     rotuloDoTitulo.pack()
