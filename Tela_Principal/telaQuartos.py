@@ -8,7 +8,6 @@ telaDois = None
 Quarto = None
 
 class telasDeQuartos:
-
     def segundaTela():
         global telaDois
         teladois = tk.Tk()
@@ -56,6 +55,20 @@ class telasDeQuartos:
 
 class Cadastro:
      def cadastro(quarto):
+        def save_data():
+            nome = nameEntry.get()
+            cpf = cpfEntry.get()
+            with open('dates.txt', 'r') as f:
+                for linha in f.readlines():
+                    checkin = linha.strip("\n").strip(":")[0:10]
+                    checkout = linha.strip("\n").strip(":")[11:21]
+            f.close()
+            database.insert_room(nome,checkin,checkout,cpf,quarto,1)
+            telaTres.destroy()
+            telaDois.destroy()
+            telaResumo.TelaDeResumo.quartaTela()
+
+
         telaTres = tk.Tk()
         telaTres.geometry("525x450")
         telaTres.minsize(525, 450)
@@ -85,10 +98,6 @@ class Cadastro:
         cpfEntry = Entry(telaTres, width=22, font=("calibri", 15))
         cpfEntry.pack()
         cpfEntry.place(x=30, y=220)
-        salvarDados = Button(telaTres, text="Resumo", bg="black", fg="white", width=8, height=2, command=lambda: (ProxTela(),
-                                                                                                                   telaTres.destroy(), telaDois.destroy()))
+        salvarDados = Button(telaTres, text="Resumo", bg="black", fg="white", width=8, height=2, command=save_data)
         salvarDados.pack()
         salvarDados.place(x=380, y=190)
-
-        def ProxTela():
-            telaResumo.TelaDeResumo.quartaTela()

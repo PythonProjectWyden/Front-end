@@ -1,7 +1,6 @@
 from tkinter import *
 import tkinter as tk
 from database import *
-import telaData
 database = RoomDB()
 
 class TelaDeResumo:

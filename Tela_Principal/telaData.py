@@ -7,18 +7,16 @@ from datetime import datetime
 database = RoomDB()
 
 class telasDeData:
-    def proxTelas():
-        telaQuartos.telasDeQuartos.segundaTela()
-
     def primeiraTela(): 
         def saveDates():
             with open('dates.txt', 'a') as f:
                 checkin1 = checkin_date.get_date()
                 checkout1 = checkout_date.get_date()
-                f.write("{}:{}\n".format(checkin1,checkout1))
-                telaUm.destroy()
-                telasDeData.proxTelas()
-
+                f.write("{}:{}".format(checkin1,checkout1))
+                f.close()
+            telaUm.destroy()
+            telaQuartos.telasDeQuartos.segundaTela()
+                
         telaUm = tk.Tk()
         telaUm.geometry("300x300")
         telaUm.minsize(300, 300)
