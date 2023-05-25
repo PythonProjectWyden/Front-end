@@ -6,8 +6,12 @@ class RoomDB:
     INSERT_ROOM_QUERY = 'INSERT INTO room(name,check_in,check_out,CPF,number,occupied) VALUES (?,?,?,?,?,?)'
     UPDATE_DATE_ROOM_QUERY = 'UPDATE room SET check_in = ? WHERE cpf = ?'
     UPDATE_OCCUPIED_ROOM_QUERY = 'UPDATE room SET occupied = ? WHERE number = ?'
-    SELECT_ROOM_QUERY = 'SELECT * FROM room WHERE CPF = ?'
-    SELECT_BY_DATE_AND_NUMBER_QUERY = 'SELECT occupied FROM room WHERE number = ?'
+    SELECT_NAME_QUERY = 'SELECT name FROM room WHERE CPF = ?'
+    SELECT_CHECKIN_QUERY = 'SELECT check_in FROM room WHERE CPF = ?'
+    SELECT_CHECKOUT_QUERY = 'SELECT check_out FROM room WHERE CPF = ?'
+    SELECT_CPF_QUERY = 'SELECT CPF FROM room WHERE name = ?'
+    SELECT_NUMBER_QUERY = 'SELECT number FROM room WHERE CPF = ?'
+    SELECT_occupied_QUERY = 'SELECT occupied FROM room WHERE CPF = ?'
     DELETE_ROOM_QUERY = 'DELETE FROM room WHERE CPF = ?'
 
 
@@ -30,21 +34,38 @@ class RoomDB:
         new_occupied = not current_occupied
         self.c.execute(self.UPDATE_OCCUPIED_ROOM_QUERY, (new_occupied, number))
         self.conect.commit()
-        
-    def select_room(self,CPF):
-        self.c.execute(self.SELECT_ROOM_QUERY,(CPF))
-        return self.c.fetchall()
-    
-    def select_by_date_and_number(self, occupied, number):
-        self.c.execute(self.SELECT_BY_DATE_AND_NUMBER_QUERY, (occupied, number))
-        return self.c.fetchone()
-    
-    def select_occupied(self,number,data):
-        self.c.execute("SELECT occupied FROM room WHERE number = ? AND date = ?", (number,data)).fetchone()[0]
     
     def delete_room(self,CPF):
         self.c.execute(self.DELETE_ROOM_QUERY,(CPF,))
         self.conect.commit()
-        
+
+    def select_name(self,cpf):
+        self.c.execute(self.SELECT_NAME_QUERY,(cpf,))
+        return self.c.fetchall()
+    
+    def select_checkin(self,cpf):
+        self.c.execute(self.SELECT_CHECKIN_QUERY,(cpf,))
+        return self.c.fetchall()
+    
+    def select_checkout(self,cpf):
+        self.c.execute(self.SELECT_CHECKOUT_QUERY,(cpf,))
+        return self.c.fetchall()
+    
+    def select_cpf(self,name):
+        self.c.execute(self.SELECT_CPF_QUERY,(name,))
+        return self.c.fetchall()
+    
+    def select_number(self,cpf):
+        self.c.execute(self.SELECT_NUMBER_QUERY,(cpf,))
+        return self.c.fetchall()
+    
+    def select_occupied(self,cpf):
+        self.c.execute(self.SELECT_occupied_QUERY,(cpf,))
+        return self.c.fetchall()
+
     def __del__(self):
         self.conect.close()
+    
+    
+    
+    
