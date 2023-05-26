@@ -48,14 +48,12 @@ class telasDeQuartos:
         telasDeQuartos.BtnBox("1C", 725, 650)
         telasDeQuartos.BtnBox("1D", 850, 650)
 
-    if(str(database.select_occupied) == "1"):
-        @staticmethod
+    if():
         def BtnBox(quarto, x, y):
             btnBox = Button(telaDois, text=quarto, font=(quarto, 25), bg="red", fg="white", width=5, height=2)
             btnBox.pack()
             btnBox.place(x=x, y=y)
     else:
-        @staticmethod
         def BtnBox(quarto, x, y):
             btnBox = Button(telaDois, text=quarto, font=(quarto, 25), bg="green", fg="white", width=5, height=2, command=lambda:Cadastro.cadastro(quarto))
             btnBox.pack()
