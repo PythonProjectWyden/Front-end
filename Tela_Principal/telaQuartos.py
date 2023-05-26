@@ -2,8 +2,9 @@ from tkinter import *
 import tkinter as tk
 from database import *
 import telaResumo
-database = RoomDB()
+import os
 
+database = RoomDB()
 telaDois = None
 Quarto = None
 
@@ -46,9 +47,16 @@ class telasDeQuartos:
         telasDeQuartos.BtnBox("1B", 600, 650)
         telasDeQuartos.BtnBox("1C", 725, 650)
         telasDeQuartos.BtnBox("1D", 850, 650)
-    
-    @staticmethod
-    def BtnBox(quarto, x, y,):
+
+    if(str(database.select_occupied) == "1"):
+        @staticmethod
+        def BtnBox(quarto, x, y):
+            btnBox = Button(telaDois, text=quarto, font=(quarto, 25), bg="red", fg="white", width=5, height=2)
+            btnBox.pack()
+            btnBox.place(x=x, y=y)
+    else:
+        @staticmethod
+        def BtnBox(quarto, x, y):
             btnBox = Button(telaDois, text=quarto, font=(quarto, 25), bg="green", fg="white", width=5, height=2, command=lambda:Cadastro.cadastro(quarto))
             btnBox.pack()
             btnBox.place(x=x, y=y)
@@ -66,8 +74,8 @@ class Cadastro:
             database.insert_room(nome,checkin,checkout,cpf,quarto,1)
             telaTres.destroy()
             telaDois.destroy()
-            telaResumo.TelaDeResumo.quartaTela()
-
+            telaResumo.TelaDeResumo.quartaTela(cpf,nome)
+            os.remove("dates.txt")
 
         telaTres = tk.Tk()
         telaTres.geometry("525x450")
