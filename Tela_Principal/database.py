@@ -11,7 +11,7 @@ class RoomDB:
     SELECT_CPF_QUERY = 'SELECT CPF FROM room WHERE name = ?'
     SELECT_NUMBER_QUERY = 'SELECT number FROM room WHERE CPF = ?'
     SELECT_OCCUPIED_QUERY = 'SELECT occupied FROM room WHERE CPF = ?'
-    SELECT_ALL_OCCUPIED_QUERY = 'SELECT occupied FROM room'
+    SELECT_ALL_OCCUPIED_QUERY = 'SELECT occupied FROM room WHERE number = ?'
     DELETE_ROOM_QUERY = 'DELETE FROM room WHERE CPF = ?'
 
     def __init__(self):

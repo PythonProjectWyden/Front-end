@@ -48,16 +48,21 @@ class telasDeQuartos:
         telasDeQuartos.BtnBox("1C", 725, 650)
         telasDeQuartos.BtnBox("1D", 850, 650)
 
-    if():
-        def BtnBox(quarto, x, y):
-            btnBox = Button(telaDois, text=quarto, font=(quarto, 25), bg="red", fg="white", width=5, height=2)
-            btnBox.pack()
-            btnBox.place(x=x, y=y)
-    else:
-        def BtnBox(quarto, x, y):
-            btnBox = Button(telaDois, text=quarto, font=(quarto, 25), bg="green", fg="white", width=5, height=2, command=lambda:Cadastro.cadastro(quarto))
-            btnBox.pack()
-            btnBox.place(x=x, y=y)
+    def checkOccupiedColor(quarto):
+        if database.select_all_occupied == 1:
+            return "red"
+        else:
+            return "green"
+
+    def BtnBox(quarto, x, y):
+        cor = telasDeQuartos.checkOccupiedColor(quarto)
+        if database.select_all_occupied == 1:
+            btnBox = Button(telaDois, text=quarto, font=(quarto, 25), bg=cor, fg="white", width=5, height=2)
+        else:
+            btnBox = Button(telaDois, text=quarto, font=(quarto, 25), bg=cor, fg="white", width=5, height=2, command=lambda:Cadastro.cadastro(quarto))
+        btnBox.pack()
+        btnBox.place(x=x, y=y)
+
 
 class Cadastro:
      def cadastro(quarto):
