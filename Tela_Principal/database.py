@@ -11,6 +11,7 @@ class RoomDB:
     SELECT_CPF_QUERY = 'SELECT CPF FROM room WHERE name = ?'
     SELECT_NUMBER_QUERY = 'SELECT number FROM room WHERE CPF = ?'
     SELECT_OCCUPIED_QUERY = 'SELECT occupied FROM room WHERE CPF = ?'
+    SELECT_ALL_OCCUPIED_QUERY = 'SELECT occupied FROM room'
     DELETE_ROOM_QUERY = 'DELETE FROM room WHERE CPF = ?'
 
     def __init__(self):
@@ -60,6 +61,11 @@ class RoomDB:
     def select_occupied(self, cpf):
         self.c.execute(self.SELECT_OCCUPIED_QUERY, (cpf))
         return self.c.fetchall()
-
+    
+    def select_all_occupied(self):
+        self.c.execute(self.SELECT_ALL_OCCUPIED_QUERY)
+        return self.c.fetchall()
+    
+   
     def __del__(self):
         self.conect.close()
