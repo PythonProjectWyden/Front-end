@@ -16,6 +16,7 @@ class telasDeData:
                 f.close()
             telaUm.destroy()
             telaQuartos.telasDeQuartos.segundaTela()
+            database.insert_room(NONE,NONE,NONE,NONE,NONE,0)
                 
         telaUm = tk.Tk()
         telaUm.geometry("300x300")

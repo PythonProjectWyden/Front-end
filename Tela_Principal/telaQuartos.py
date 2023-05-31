@@ -74,7 +74,12 @@ class Cadastro:
                     checkin = linha.strip("\n").strip(":")[0:10]
                     checkout = linha.strip("\n").strip(":")[11:21]
             f.close()
-            database.insert_room(nome,checkin,checkout,cpf,quarto,1)
+            database.update_name(nome, "none")
+            database.update_checkin(checkin, "none")
+            database.update_checkout(checkout, "none")
+            database.update_cpf(cpf, "none")
+            database.update_number(quarto, "none")
+            database.update_occupied(1,"none")
             telaTres.destroy()
             telaDois.destroy()
             telaResumo.TelaDeResumo.quartaTela(cpf,nome)

@@ -18,23 +18,23 @@ class TelaDeResumo:
         titulo1.pack()
         titulo1.place(x=70,y=30)
 
-        nomep = Label(telaQuatro, text="Nome: "+str(database.select_name(cpf)[0][0]), font=9)
+        nomep = Label(telaQuatro, text="Nome: "+str(database.select_name(cpf)[0]), font=9)
         nomep.pack()
         nomep.place(x=50,y=100)
 
-        cpfp = Label(telaQuatro, text="CPF: "+str(database.select_cpf(nome)[0][0]), font=9)
+        cpfp = Label(telaQuatro, text="CPF: "+str(database.select_cpf(nome)[0]), font=9)
         cpfp.pack()
         cpfp.place(x=50,y=130)
 
-        quarto = Label(telaQuatro, text="Quarto: "+str(database.select_number(cpf)[0][0]), font=9)
+        quarto = Label(telaQuatro, text="Quarto: "+str(database.select_number(cpf)[0]), font=9)
         quarto.pack()
         quarto.place(x=50, y=160)
 
-        datacheckin = Label(telaQuatro, text="Data de checkin: "+str(database.select_checkin(cpf)[0][0]), font=9)
+        datacheckin = Label(telaQuatro, text="Data de checkin: "+str(database.select_checkin(cpf)[0]), font=9)
         datacheckin.pack()
         datacheckin.place(x=50,y=190)
 
-        datacheckout = Label(telaQuatro, text="Data de checkin: "+str(database.select_checkout(cpf)[0][0]), font=9)
+        datacheckout = Label(telaQuatro, text="Data de checkin: "+str(database.select_checkout(cpf)[0]), font=9)
         datacheckout.pack()
         datacheckout.place(x=50,y=220)
 
