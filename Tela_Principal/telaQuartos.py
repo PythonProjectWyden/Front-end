@@ -77,7 +77,7 @@ class Cadastro:
             database.update_name(nome, "none")
             database.update_checkin(checkin, "none")
             database.update_checkout(checkout, "none")
-            database.update_cpf(cpf, "none")
+            database.update_CPF(cpf, "none")
             database.update_number(quarto, "none")
             database.update_occupied(1,"none")
             telaTres.destroy()
