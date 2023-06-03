@@ -22,7 +22,7 @@ class TelaDeResumo:
         nomep.pack()
         nomep.place(x=50,y=100)
 
-        cpfp = Label(telaQuatro, text="CPF: "+str(database.select_cpf(nome)[0]), font=9)
+        cpfp = Label(telaQuatro, text="CPF: "+str(database.select_CPF(nome)[0]), font=9)
         cpfp.pack()
         cpfp.place(x=50,y=130)
 

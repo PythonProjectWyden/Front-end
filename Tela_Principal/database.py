@@ -60,32 +60,32 @@ class RoomDB:
         self.connection.commit()
 
     def select_name(self, CPF):
-        self.c.execute(self.SELECT_NAME_QUERY, (CPF))
-        return self.c.fetchall()
+        self.cursor.execute(self.SELECT_NAME_QUERY, (CPF))
+        return self.cursor.fetchall()
 
     def select_checkin(self, CPF):
-        self.c.execute(self.SELECT_CHECKIN_QUERY, (CPF))
-        return self.c.fetchall()
+        self.cursor.execute(self.SELECT_CHECKIN_QUERY, (CPF))
+        return self.cursor.fetchall()
 
     def select_checkout(self, CPF):
-        self.c.execute(self.SELECT_CHECKOUT_QUERY, (CPF))
-        return self.c.fetchall()
+        self.cursor.execute(self.SELECT_CHECKOUT_QUERY, (CPF))
+        return self.cursor.fetchall()
 
     def select_CPF(self, name):
-        self.c.execute(self.SELECT_CPF_QUERY, (name))
-        return self.c.fetchall()
+        self.cursor.execute(self.SELECT_CPF_QUERY, (name))
+        return self.cursor.fetchall()
 
     def select_number(self, CPF):
-        self.c.execute(self.SELECT_NUMBER_QUERY, (CPF))
-        return self.c.fetchall()
+        self.cursor.execute(self.SELECT_NUMBER_QUERY, (CPF))
+        return self.cursor.fetchall()
 
     def select_occupied(self, CPF):
-        self.c.execute(self.SELECT_OCCUPIED_QUERY, (CPF))
-        return self.c.fetchall()
+        self.cursor.execute(self.SELECT_OCCUPIED_QUERY, (CPF))
+        return self.cursor.fetchall()
 
     def select_all_occupied(self):
-        self.c.execute(self.SELECT_ALL_OCCUPIED_QUERY)
-        return self.c.fetchall()
+        self.cursor.execute(self.SELECT_ALL_OCCUPIED_QUERY)
+        return self.cursor.fetchall()
 
     def __del__(self):
-        self.conect.close()
+        self.connection.close()

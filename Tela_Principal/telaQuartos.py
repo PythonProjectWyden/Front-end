@@ -66,6 +66,7 @@ class telasDeQuartos:
 
 class Cadastro:
      def cadastro(quarto):
+        Quarto = quarto
         def save_data():
             nome = nameEntry.get()
             cpf = cpfEntry.get()
@@ -78,8 +79,8 @@ class Cadastro:
             database.update_checkin(checkin, "none")
             database.update_checkout(checkout, "none")
             database.update_CPF(cpf, "none")
-            database.update_number(quarto, "none")
-            database.update_occupied(1,"none")
+            database.update_number(Quarto, "none")
+            database.update_occupied(1, "0")
             telaTres.destroy()
             telaDois.destroy()
             telaResumo.TelaDeResumo.quartaTela(cpf,nome)
