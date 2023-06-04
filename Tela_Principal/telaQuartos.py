@@ -54,7 +54,7 @@ class telasDeQuartos:
                 checkin = linha.strip("\n").strip(":")[0:10]
                 checkout = linha.strip("\n").strip(":")[11:21]
 
-                if database.select_all_occupied_for_dates(quarto, checkin, checkout):
+                if database.select_occupied_for_dates(quarto, checkin, checkout):
                     return "red"
         
         return "green"

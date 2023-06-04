@@ -97,10 +97,11 @@ class RoomDB:
         self.cursor.execute(self.SELECT_ALL_OCCUPIED_QUERY, (number,))
         return self.cursor.fetchall()
     
-    def select_all_occupied_for_dates(self, number, checkin, checkout):
-        query = 'SELECT occupied FROM room WHERE number = ? AND ((check_in >= ? AND check_in <= ?) OR (check_out >= ? AND check_out <= ?))'
-        self.cursor.execute(query, (number, checkin, checkout, checkin, checkout))
-        return self.cursor.fetchall()
+    def select_occupied_for_dates(self, number, checkin, checkout):
+        query = 'SELECT occupied FROM room WHERE number = ? AND check_in <= ? AND check_out >= ?'
+        self.cursor.execute(query, (number, checkout, checkin))
+        return self.cursor.fetchone() is not None
+
 
     def __del__(self):
         self.connection.close()
