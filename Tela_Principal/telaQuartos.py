@@ -49,14 +49,19 @@ class telasDeQuartos:
         telasDeQuartos.BtnBox("1D", 850, 650)
 
     def checkOccupiedColor(quarto):
-        if database.select_all_occupied(quarto):
-            return "red"
-        else:
-            return "green"
+        with open('dates.txt', 'r') as f:
+            for linha in f.readlines():
+                checkin = linha.strip("\n").strip(":")[0:10]
+                checkout = linha.strip("\n").strip(":")[11:21]
+
+                if database.select_all_occupied_for_dates(quarto, checkin, checkout):
+                    return "red"
+        
+        return "green"
 
     def BtnBox(quarto, x, y):
         cor = telasDeQuartos.checkOccupiedColor(quarto)
-        if database.select_all_occupied(quarto):
+        if cor == "red":
             btnBox = Button(telaDois, text=quarto, font=(quarto, 25), bg=cor, fg="white", width=5, height=2)
         else:
             btnBox = Button(telaDois, text=quarto, font=(quarto, 25), bg=cor, fg="white", width=5, height=2, command=lambda:Cadastro.cadastro(quarto))

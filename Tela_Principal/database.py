@@ -17,6 +17,8 @@ class RoomDB:
     SELECT_CPF_QUERY = 'SELECT CPF FROM room WHERE name = ?'
     SELECT_NUMBER_QUERY = 'SELECT number FROM room WHERE CPF = ?'
     SELECT_OCCUPIED_QUERY = 'SELECT occupied FROM room WHERE CPF = ?'
+    SELECT_ALL_CHECKIN_QUERY = 'SELECT check_in FROM room' 
+    SELECT_ALL_CHECKOUT_QUERY = 'SELECT check_out FROM room' 
     SELECT_ALL_OCCUPIED_QUERY = 'SELECT occupied FROM room WHERE number = ?' 
     DELETE_ROOM_QUERY = 'DELETE FROM room WHERE CPF = ?'
 
@@ -82,9 +84,22 @@ class RoomDB:
     def select_occupied(self, CPF):
         self.cursor.execute(self.SELECT_OCCUPIED_QUERY, (CPF,))
         return self.cursor.fetchall()
+    
+    def select_all_checkin(self):
+        self.cursor.execute(self.SELECT_ALL_CHECKIN_QUERY,)
+        return self.cursor.fetchall()
+    
+    def select_all_checkout(self):
+        self.cursor.execute(self.SELECT_ALL_CHECKOUT_QUERY,)
+        return self.cursor.fetchall()
 
     def select_all_occupied(self, number):
         self.cursor.execute(self.SELECT_ALL_OCCUPIED_QUERY, (number,))
+        return self.cursor.fetchall()
+    
+    def select_all_occupied_for_dates(self, number, checkin, checkout):
+        query = 'SELECT occupied FROM room WHERE number = ? AND ((check_in >= ? AND check_in <= ?) OR (check_out >= ? AND check_out <= ?))'
+        self.cursor.execute(query, (number, checkin, checkout, checkin, checkout))
         return self.cursor.fetchall()
 
     def __del__(self):

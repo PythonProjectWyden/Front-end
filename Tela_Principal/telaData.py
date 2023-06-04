@@ -14,9 +14,12 @@ class telasDeData:
                 checkout1 = checkout_date.get_date()
                 f.write("{}:{}".format(checkin1,checkout1))
                 f.close()
-            telaUm.destroy()
-            database.insert_room(NONE,NONE,NONE,NONE,NONE,0)
-            telaQuartos.telasDeQuartos.segundaTela()
+                if(checkin1 > checkout1):
+                    return
+                else:
+                    telaUm.destroy()
+                    database.insert_room(NONE,NONE,NONE,NONE,NONE,0)
+                    telaQuartos.telasDeQuartos.segundaTela()
                 
         telaUm = tk.Tk()
         telaUm.geometry("300x300")
