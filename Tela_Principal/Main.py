@@ -1,3 +1,3 @@
-import TelaTeste
+from telaData import telasDeData
 
-TelaTeste.telasDeData.primeiraTela()
+telasDeData.primeiraTela()
