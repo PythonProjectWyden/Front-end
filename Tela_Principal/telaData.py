@@ -15,8 +15,8 @@ class telasDeData:
                 f.write("{}:{}".format(checkin1,checkout1))
                 f.close()
             telaUm.destroy()
-            telaQuartos.telasDeQuartos.segundaTela()
             database.insert_room(NONE,NONE,NONE,NONE,NONE,0)
+            telaQuartos.telasDeQuartos.segundaTela()
                 
         telaUm = tk.Tk()
         telaUm.geometry("300x300")

@@ -49,14 +49,14 @@ class telasDeQuartos:
         telasDeQuartos.BtnBox("1D", 850, 650)
 
     def checkOccupiedColor(quarto):
-        if database.select_all_occupied == 1:
+        if database.select_all_occupied(quarto):
             return "red"
         else:
             return "green"
 
     def BtnBox(quarto, x, y):
         cor = telasDeQuartos.checkOccupiedColor(quarto)
-        if database.select_all_occupied == 1:
+        if database.select_all_occupied(quarto):
             btnBox = Button(telaDois, text=quarto, font=(quarto, 25), bg=cor, fg="white", width=5, height=2)
         else:
             btnBox = Button(telaDois, text=quarto, font=(quarto, 25), bg=cor, fg="white", width=5, height=2, command=lambda:Cadastro.cadastro(quarto))

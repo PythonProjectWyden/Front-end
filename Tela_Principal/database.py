@@ -17,7 +17,7 @@ class RoomDB:
     SELECT_CPF_QUERY = 'SELECT CPF FROM room WHERE name = ?'
     SELECT_NUMBER_QUERY = 'SELECT number FROM room WHERE CPF = ?'
     SELECT_OCCUPIED_QUERY = 'SELECT occupied FROM room WHERE CPF = ?'
-    SELECT_ALL_OCCUPIED_QUERY = 'SELECT occupied FROM room WHERE number = ?'
+    SELECT_ALL_OCCUPIED_QUERY = 'SELECT occupied FROM room WHERE number = ?' 
     DELETE_ROOM_QUERY = 'DELETE FROM room WHERE CPF = ?'
 
     def __init__(self):
@@ -56,35 +56,35 @@ class RoomDB:
         self.connection.commit()
 
     def delete_room(self, CPF):
-        self.cursor.execute(self.DELETE_ROOM_QUERY, (CPF))
+        self.cursor.execute(self.DELETE_ROOM_QUERY, (CPF,))
         self.connection.commit()
 
     def select_name(self, CPF):
-        self.cursor.execute(self.SELECT_NAME_QUERY, (CPF))
+        self.cursor.execute(self.SELECT_NAME_QUERY, (CPF,))
         return self.cursor.fetchall()
 
     def select_checkin(self, CPF):
-        self.cursor.execute(self.SELECT_CHECKIN_QUERY, (CPF))
+        self.cursor.execute(self.SELECT_CHECKIN_QUERY, (CPF,))
         return self.cursor.fetchall()
 
     def select_checkout(self, CPF):
-        self.cursor.execute(self.SELECT_CHECKOUT_QUERY, (CPF))
+        self.cursor.execute(self.SELECT_CHECKOUT_QUERY, (CPF,))
         return self.cursor.fetchall()
 
     def select_CPF(self, name):
-        self.cursor.execute(self.SELECT_CPF_QUERY, (name))
+        self.cursor.execute(self.SELECT_CPF_QUERY, (name,))
         return self.cursor.fetchall()
 
     def select_number(self, CPF):
-        self.cursor.execute(self.SELECT_NUMBER_QUERY, (CPF))
+        self.cursor.execute(self.SELECT_NUMBER_QUERY, (CPF,))
         return self.cursor.fetchall()
 
     def select_occupied(self, CPF):
-        self.cursor.execute(self.SELECT_OCCUPIED_QUERY, (CPF))
+        self.cursor.execute(self.SELECT_OCCUPIED_QUERY, (CPF,))
         return self.cursor.fetchall()
 
-    def select_all_occupied(self):
-        self.cursor.execute(self.SELECT_ALL_OCCUPIED_QUERY)
+    def select_all_occupied(self, number):
+        self.cursor.execute(self.SELECT_ALL_OCCUPIED_QUERY, (number,))
         return self.cursor.fetchall()
 
     def __del__(self):
