@@ -12,6 +12,7 @@ class telasDeQuartos:
     def segundaTela():
         global telaDois
         teladois = tk.Tk()
+        teladois.eval('tk::PlaceWidow.center')
         telaDois = teladois
         telaDois.geometry("1024x768")
         telaDois.minsize(1024, 768)
@@ -92,6 +93,7 @@ class Cadastro:
             os.remove("dates.txt")
 
         telaTres = tk.Tk()
+        telaTres.eval('tk::PlaceWidow.center')
         telaTres.geometry("525x450")
         telaTres.minsize(525, 450)
         telaTres.maxsize(525, 450)
