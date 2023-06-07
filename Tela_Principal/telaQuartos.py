@@ -3,6 +3,7 @@ import tkinter as tk
 from database import *
 import telaResumo
 import os
+from tkinter import messagebox
 
 database = RoomDB()
 telaDois = None
@@ -12,7 +13,6 @@ class telasDeQuartos:
     def segundaTela():
         global telaDois
         teladois = tk.Tk()
-        teladois.eval('tk::PlaceWidow.center')
         telaDois = teladois
         telaDois.geometry("1024x768")
         telaDois.minsize(1024, 768)
@@ -28,26 +28,35 @@ class telasDeQuartos:
         titulo2 = Label(telaDois, text="Quartos:", font=("Quartos", 18))
         titulo2.pack()
 
-        telasDeQuartos.BtnBox("5A", 475, 150)
-        telasDeQuartos.BtnBox("5B", 600, 150)
-        telasDeQuartos.BtnBox("5C", 725, 150)
-        telasDeQuartos.BtnBox("5D", 850, 150)
-        telasDeQuartos.BtnBox("4A", 475, 275)
-        telasDeQuartos.BtnBox("4B", 600, 275)
-        telasDeQuartos.BtnBox("4C", 725, 275)
-        telasDeQuartos.BtnBox("4D", 850, 275)
-        telasDeQuartos.BtnBox("3A", 475, 400)
-        telasDeQuartos.BtnBox("3B", 600, 400)
-        telasDeQuartos.BtnBox("3C", 725, 400)
-        telasDeQuartos.BtnBox("3D", 850, 400)
-        telasDeQuartos.BtnBox("2A", 475, 525)
-        telasDeQuartos.BtnBox("2B", 600, 525)
-        telasDeQuartos.BtnBox("2C", 725, 525)
-        telasDeQuartos.BtnBox("2D", 850, 525)
-        telasDeQuartos.BtnBox("1A", 475, 650)
-        telasDeQuartos.BtnBox("1B", 600, 650)
-        telasDeQuartos.BtnBox("1C", 725, 650)
-        telasDeQuartos.BtnBox("1D", 850, 650)
+        telasDeQuartos.BtnBox("5A", 200, 150)
+        telasDeQuartos.BtnBox("5B", 400, 150)
+        telasDeQuartos.BtnBox("5C", 600, 150)
+        telasDeQuartos.BtnBox("5D", 800, 150)
+        telasDeQuartos.BtnBox("4A", 200, 275)
+        telasDeQuartos.BtnBox("4B", 400, 275)
+        telasDeQuartos.BtnBox("4C", 600, 275)
+        telasDeQuartos.BtnBox("4D", 800, 275)
+        telasDeQuartos.BtnBox("3A", 200, 400)
+        telasDeQuartos.BtnBox("3B", 400, 400)
+        telasDeQuartos.BtnBox("3C", 600, 400)
+        telasDeQuartos.BtnBox("3D", 800, 400)
+        telasDeQuartos.BtnBox("2A", 200, 525)
+        telasDeQuartos.BtnBox("2B", 400, 525)
+        telasDeQuartos.BtnBox("2C", 600, 525)
+        telasDeQuartos.BtnBox("2D", 800, 525)
+        telasDeQuartos.BtnBox("1A", 200, 650)
+        telasDeQuartos.BtnBox("1B", 400, 650)
+        telasDeQuartos.BtnBox("1C", 600, 650)
+        telasDeQuartos.BtnBox("1D", 800, 650)
+        
+
+        def on_closing():
+            print("Window was closed")
+            os.remove("dates.txt")
+            database.delete_room("none")
+            telaDois.destroy()
+            
+        telaDois.protocol("WM_DELETE_WINDOW",on_closing)
 
     def checkOccupiedColor(quarto):
         with open('dates.txt', 'r') as f:
@@ -59,7 +68,7 @@ class telasDeQuartos:
                     return "red"
         
         return "green"
-
+        
     def BtnBox(quarto, x, y):
         cor = telasDeQuartos.checkOccupiedColor(quarto)
         if cor == "red":
@@ -74,8 +83,25 @@ class Cadastro:
      def cadastro(quarto):
         Quarto = quarto
         def save_data():
+            valid_cpfs = [10,11,12,21,22,23,32,33,34,43,44,45,54,55,56,65,66,67,76,77,78,89,88]
             nome = nameEntry.get()
             cpf = cpfEntry.get()
+            all_cpfs = database.select_all_cpf()
+            print(all_cpfs)
+            print(cpf)
+            number = 0
+            index = 0
+            # if(cpf in database.select_all_cpf()[]):
+            #     return
+                
+            while(index < len(cpf)):
+                number += int(cpf[index])
+                index += 1
+                
+            if((number not in valid_cpfs) or (len(cpf) != 11)):
+                messagebox.showerror(title="Error", message="CPF inválido!")
+                return False
+            
             with open('dates.txt', 'r') as f:
                 for linha in f.readlines():
                     checkin = linha.strip("\n").strip(":")[0:10]
@@ -89,11 +115,10 @@ class Cadastro:
             database.update_occupied(1, cpf)
             telaTres.destroy()
             telaDois.destroy()
-            telaResumo.TelaDeResumo.quartaTela(cpf,nome)
+            telaResumo.TelaDeResumo.quartaTela(cpf,quarto)
             os.remove("dates.txt")
-
+            
         telaTres = tk.Tk()
-        telaTres.eval('tk::PlaceWidow.center')
         telaTres.geometry("525x450")
         telaTres.minsize(525, 450)
         telaTres.maxsize(525, 450)

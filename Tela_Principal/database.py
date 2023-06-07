@@ -14,9 +14,10 @@ class RoomDB:
     SELECT_NAME_QUERY = 'SELECT name FROM room WHERE CPF = ?'
     SELECT_CHECKIN_QUERY = 'SELECT check_in FROM room WHERE CPF = ?'
     SELECT_CHECKOUT_QUERY = 'SELECT check_out FROM room WHERE CPF = ?'
-    SELECT_CPF_QUERY = 'SELECT CPF FROM room WHERE name = ?'
+    SELECT_CPF_QUERY = 'SELECT CPF FROM room WHERE number = ?'
     SELECT_NUMBER_QUERY = 'SELECT number FROM room WHERE CPF = ?'
     SELECT_OCCUPIED_QUERY = 'SELECT occupied FROM room WHERE CPF = ?'
+    SELECT_ALL_CPF_QUERY = 'SELECT CPF FROM room'
     SELECT_ALL_CHECKIN_QUERY = 'SELECT check_in FROM room' 
     SELECT_ALL_CHECKOUT_QUERY = 'SELECT check_out FROM room' 
     SELECT_ALL_OCCUPIED_QUERY = 'SELECT occupied FROM room WHERE number = ?' 
@@ -73,8 +74,8 @@ class RoomDB:
         self.cursor.execute(self.SELECT_CHECKOUT_QUERY, (CPF,))
         return self.cursor.fetchall()
 
-    def select_CPF(self, name):
-        self.cursor.execute(self.SELECT_CPF_QUERY, (name,))
+    def select_CPF(self, number):
+        self.cursor.execute(self.SELECT_CPF_QUERY, (number,))
         return self.cursor.fetchall()
 
     def select_number(self, CPF):
@@ -83,6 +84,10 @@ class RoomDB:
 
     def select_occupied(self, CPF):
         self.cursor.execute(self.SELECT_OCCUPIED_QUERY, (CPF,))
+        return self.cursor.fetchall()
+    
+    def select_all_cpf(self):
+        self.cursor.execute(self.SELECT_ALL_CPF_QUERY,)
         return self.cursor.fetchall()
     
     def select_all_checkin(self):

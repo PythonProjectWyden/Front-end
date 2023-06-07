@@ -4,9 +4,8 @@ from database import *
 database = RoomDB()
 
 class TelaDeResumo:
-    def quartaTela(cpf,nome):
+    def quartaTela(cpf,quarto):
         telaQuatro = tk.Tk()
-        telaQuatro.eval('tk::PlaceWidow.center')
         telaQuatro.geometry("300x300")
         telaQuatro.minsize(300, 300)
         telaQuatro.maxsize(300, 300)
@@ -23,7 +22,7 @@ class TelaDeResumo:
         nomep.pack()
         nomep.place(x=50,y=100)
 
-        cpfp = Label(telaQuatro, text="CPF: "+str(database.select_CPF(nome)[0]), font=9)
+        cpfp = Label(telaQuatro, text="CPF: "+str(database.select_CPF(quarto)[0]), font=9)
         cpfp.pack()
         cpfp.place(x=50,y=130)
 
@@ -46,7 +45,6 @@ class TelaDeResumo:
 class UltimaTela:
     def ultimaTela():
         terminar = tk.Tk()
-        terminar.eval('tk::PlaceWidow.center')
         terminar.geometry("300x300")
         terminar.minsize(300, 300)
         terminar.maxsize(300, 300)

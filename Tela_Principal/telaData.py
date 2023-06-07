@@ -22,7 +22,6 @@ class telasDeData:
                     telaQuartos.telasDeQuartos.segundaTela()
                 
         telaUm = tk.Tk()
-        telaUm.eval('tk::PlaceWidow.center')
         telaUm.geometry("300x300")
         telaUm.minsize(300, 300)
         telaUm.maxsize(300, 300)
