@@ -6,9 +6,35 @@
 # from datetime import datetime 
 # database = RoomDB()
 
+<<<<<<< Updated upstream
 # class telasDeData:
 #     checkinDentro = None
 #     checkoutDentro = None
+=======
+class telasDeData:
+    def primeiraTela(): 
+        def saveDates():
+            with open('dates.txt', 'a') as f:
+                checkin1 = checkin_date.get_date()
+                checkout1 = checkout_date.get_date()
+                f.write("{}:{}".format(checkin1,checkout1))
+                f.close()
+                if(checkin1 > checkout1):
+                    return
+                else:
+                    telaUm.destroy()
+                    database.insert_room(NONE,NONE,NONE,NONE,NONE,0)
+                    telaQuartos.telasDeQuartos.segundaTela()
+                
+        telaUm = tk.Tk()
+        telaUm.eval('tk::PlaceWindow . center')
+        telaUm.geometry("300x300")
+        telaUm.minsize(300, 300)
+        telaUm.maxsize(300, 300)
+        telaUm.title("Check-In e Check-Out")
+        rotuloDoTituloTelaUm = Label(telaUm, bg="dark blue", width=180, height=6)
+        rotuloDoTituloTelaUm.pack()
+>>>>>>> Stashed changes
 
 #     def proxTelas():
 #         telaQuartos.telasDeQuartos.segundaTela()

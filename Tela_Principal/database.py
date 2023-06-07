@@ -2,6 +2,7 @@ import sqlite3
 from wsgiref.handlers import format_date_time
 
 class RoomDB:
+<<<<<<< Updated upstream
     # CREAT_CHECKS_TABLE_QUERY=("CREATE TABLE IF NOT EXISTS checks(check_in date,check_out date,cpf text primary key)")
     CREAT_ROOM_TABLE_QUERY = ('CREATE TABLE IF NOT EXISTS room(name text,check_in text,check_out text, CPF text primary key,number text,occupied int)')  
     # INSERT_CHECKS_TABLE_QUERY=("INSERT INTO checks(check_in,check_out,cpf) VALUES(?,?,?)")
@@ -10,6 +11,26 @@ class RoomDB:
     UPDATE_OCCUPIED_ROOM_QUERY = 'UPDATE room SET occupied = ? WHERE number = ?'
     SELECT_ROOM_QUERY = 'SELECT * FROM room WHERE CPF = ?'
     SELECT_BY_DATE_AND_NUMBER_QUERY = 'SELECT occupied FROM room WHERE number = ?'
+=======
+    CREATE_ROOM_TABLE_QUERY = (
+        'CREATE TABLE IF NOT EXISTS room(name text(20), check_in date, check_out date, CPF text primary key, number text, occupied int)')
+    INSERT_ROOM_QUERY = 'INSERT INTO room(name, check_in, check_out, CPF, number, occupied) VALUES (?,?,?,?,?,?)'
+    UPDATE_NAME_QUERY = 'UPDATE room SET name = ? WHERE CPF = ?'
+    UPDATE_CHECKIN_QUERY = 'UPDATE room SET check_in = ? WHERE CPF = ?'
+    UPDATE_CHECKOUT_QUERY = 'UPDATE room SET check_out = ? WHERE CPF = ?'
+    UPDATE_CPF_QUERY = 'UPDATE room SET CPF = ? WHERE CPF = ?'
+    UPDATE_NUMBER_QUERY = 'UPDATE room SET number = ? WHERE CPF = ?'
+    UPDATE_OCCUPIED_QUERY = 'UPDATE room SET occupied = ? WHERE CPF = ?'
+    SELECT_NAME_QUERY = 'SELECT name FROM room WHERE CPF = ?'
+    SELECT_CHECKIN_QUERY = 'SELECT check_in FROM room WHERE CPF = ?'
+    SELECT_CHECKOUT_QUERY = 'SELECT check_out FROM room WHERE CPF = ?'
+    SELECT_CPF_QUERY = 'SELECT CPF FROM room WHERE name = ?'
+    SELECT_NUMBER_QUERY = 'SELECT number FROM room WHERE CPF = ?'
+    SELECT_OCCUPIED_QUERY = 'SELECT occupied FROM room WHERE CPF = ?'
+    SELECT_ALL_CHECKIN_QUERY = 'SELECT check_in FROM room' 
+    SELECT_ALL_CHECKOUT_QUERY = 'SELECT check_out FROM room' 
+    SELECT_ALL_OCCUPIED_QUERY = 'SELECT occupied FROM room WHERE number = ?' 
+>>>>>>> Stashed changes
     DELETE_ROOM_QUERY = 'DELETE FROM room WHERE CPF = ?'
     # DELETE_CHECKS_QUERY = 'DELETE FROM checks WHERE CPF = ?'
 
