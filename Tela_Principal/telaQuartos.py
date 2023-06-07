@@ -12,7 +12,7 @@ class telasDeQuartos:
     def segundaTela():
         global telaDois
         teladois = tk.Tk()
-        teladois.eval('tk::PlaceWindow . center')
+        teladois.eval('tk::PlaceWidow.center')
         telaDois = teladois
         telaDois.geometry("1024x768")
         telaDois.minsize(1024, 768)
@@ -28,26 +28,26 @@ class telasDeQuartos:
         titulo2 = Label(telaDois, text="Quartos:", font=("Quartos", 18))
         titulo2.pack()
 
-        telasDeQuartos.BtnBox("5A", 200, 150)
-        telasDeQuartos.BtnBox("5B", 400, 150)
-        telasDeQuartos.BtnBox("5C", 600, 150)
-        telasDeQuartos.BtnBox("5D", 800, 150)
-        telasDeQuartos.BtnBox("4A", 200, 275)
-        telasDeQuartos.BtnBox("4B", 400, 275)
-        telasDeQuartos.BtnBox("4C", 600, 275)
-        telasDeQuartos.BtnBox("4D", 800, 275)
-        telasDeQuartos.BtnBox("3A", 200, 400)
-        telasDeQuartos.BtnBox("3B", 400, 400)
-        telasDeQuartos.BtnBox("3C", 600, 400)
-        telasDeQuartos.BtnBox("3D", 800, 400)
-        telasDeQuartos.BtnBox("2A", 200, 525)
-        telasDeQuartos.BtnBox("2B", 400, 525)
-        telasDeQuartos.BtnBox("2C", 600, 525)
-        telasDeQuartos.BtnBox("2D", 800, 525)
-        telasDeQuartos.BtnBox("1A", 200, 650)
-        telasDeQuartos.BtnBox("1B", 400, 650)
-        telasDeQuartos.BtnBox("1C", 600, 650)
-        telasDeQuartos.BtnBox("1D", 800, 650)
+        telasDeQuartos.BtnBox("5A", 475, 150)
+        telasDeQuartos.BtnBox("5B", 600, 150)
+        telasDeQuartos.BtnBox("5C", 725, 150)
+        telasDeQuartos.BtnBox("5D", 850, 150)
+        telasDeQuartos.BtnBox("4A", 475, 275)
+        telasDeQuartos.BtnBox("4B", 600, 275)
+        telasDeQuartos.BtnBox("4C", 725, 275)
+        telasDeQuartos.BtnBox("4D", 850, 275)
+        telasDeQuartos.BtnBox("3A", 475, 400)
+        telasDeQuartos.BtnBox("3B", 600, 400)
+        telasDeQuartos.BtnBox("3C", 725, 400)
+        telasDeQuartos.BtnBox("3D", 850, 400)
+        telasDeQuartos.BtnBox("2A", 475, 525)
+        telasDeQuartos.BtnBox("2B", 600, 525)
+        telasDeQuartos.BtnBox("2C", 725, 525)
+        telasDeQuartos.BtnBox("2D", 850, 525)
+        telasDeQuartos.BtnBox("1A", 475, 650)
+        telasDeQuartos.BtnBox("1B", 600, 650)
+        telasDeQuartos.BtnBox("1C", 725, 650)
+        telasDeQuartos.BtnBox("1D", 850, 650)
 
     def checkOccupiedColor(quarto):
         with open('dates.txt', 'r') as f:
@@ -93,7 +93,7 @@ class Cadastro:
             os.remove("dates.txt")
 
         telaTres = tk.Tk()
-        telaTres.eval('tk::PlaceWindow . center')
+        telaTres.eval('tk::PlaceWidow.center')
         telaTres.geometry("525x450")
         telaTres.minsize(525, 450)
         telaTres.maxsize(525, 450)
@@ -110,7 +110,7 @@ class Cadastro:
 
         nameLabel = Label(telaTres, text="Nome do hóspede:",font=("Nome do hóspede", 15))
         nameLabel.pack()
-        nameLabel.place(x=30, y=200)
+        nameLabel.place(x=30, y=100)
 
         nameEntry = Entry(telaTres, width=22, font=("calibri", 15))
         nameEntry.pack()

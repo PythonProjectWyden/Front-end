@@ -6,7 +6,7 @@ database = RoomDB()
 class TelaDeResumo:
     def quartaTela(cpf,nome):
         telaQuatro = tk.Tk()
-        telaQuatro.eval('tk::PlaceWindow . center')
+        telaQuatro.eval('tk::PlaceWidow.center')
         telaQuatro.geometry("300x300")
         telaQuatro.minsize(300, 300)
         telaQuatro.maxsize(300, 300)
@@ -46,7 +46,7 @@ class TelaDeResumo:
 class UltimaTela:
     def ultimaTela():
         terminar = tk.Tk()
-        terminar.eval('tk::PlaceWindow . center')
+        terminar.eval('tk::PlaceWidow.center')
         terminar.geometry("300x300")
         terminar.minsize(300, 300)
         terminar.maxsize(300, 300)
