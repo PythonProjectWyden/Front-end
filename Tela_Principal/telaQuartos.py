@@ -83,24 +83,31 @@ class Cadastro:
      def cadastro(quarto):
         Quarto = quarto
         def save_data():
+            def verify_cpf(cpf,cpf_existente):
+                for i in range(len(cpf_existente) - 1):
+                    if(cpf == cpf_existente[i][0]):
+                        return False
+                return True
             valid_cpfs = [10,11,12,21,22,23,32,33,34,43,44,45,54,55,56,65,66,67,76,77,78,89,88]
             nome = nameEntry.get()
             cpf = cpfEntry.get()
             all_cpfs = database.select_all_cpf()
-            print(all_cpfs)
-            print(cpf)
             number = 0
             index = 0
-            # if(cpf in database.select_all_cpf()[]):
-            #     return
-                
+            if(not(verify_cpf(cpf,all_cpfs))):
+                messagebox.showerror(title="Error", message="CPF já existente!")
+                return
+            if(nome == ''):
+                messagebox.showerror(title="Error", message="Nome inválido!")
+                return
+            
             while(index < len(cpf)):
                 number += int(cpf[index])
                 index += 1
                 
             if((number not in valid_cpfs) or (len(cpf) != 11)):
                 messagebox.showerror(title="Error", message="CPF inválido!")
-                return False
+                return
             
             with open('dates.txt', 'r') as f:
                 for linha in f.readlines():
