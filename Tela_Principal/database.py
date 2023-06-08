@@ -22,6 +22,7 @@ class RoomDB:
     SELECT_ALL_CHECKOUT_QUERY = 'SELECT check_out FROM room' 
     SELECT_ALL_OCCUPIED_QUERY = 'SELECT occupied FROM room WHERE number = ?' 
     DELETE_ROOM_QUERY = 'DELETE FROM room WHERE CPF = ?'
+    DELETE_ROOM_QUERY_NUMBER = 'DELETE FROM room WHERE number = ?'
 
     def __init__(self):
         self.connection = sqlite3.connect("banco.db")
@@ -60,6 +61,10 @@ class RoomDB:
 
     def delete_room(self, CPF):
         self.cursor.execute(self.DELETE_ROOM_QUERY, (CPF,))
+        self.connection.commit()
+        
+    def delete_room_number(self, number):
+        self.cursor.execute(self.DELETE_ROOM_QUERY_NUMBER, (number,))
         self.connection.commit()
 
     def select_name(self, CPF):
