@@ -20,7 +20,7 @@ class RoomDB:
     SELECT_ALL_CPF_QUERY = 'SELECT CPF FROM room'
     SELECT_ALL_CHECKIN_QUERY = 'SELECT check_in FROM room' 
     SELECT_ALL_CHECKOUT_QUERY = 'SELECT check_out FROM room' 
-    SELECT_ALL_OCCUPIED_QUERY = 'SELECT occupied FROM room WHERE number = ?' 
+    SELECT_ALL_OCCUPIED_QUERY = 'SELECT occupied FROM room WHERE number = ?'
     DELETE_ROOM_QUERY = 'DELETE FROM room WHERE CPF = ?'
     DELETE_ROOM_QUERY_NUMBER = 'DELETE FROM room WHERE number = ?'
 

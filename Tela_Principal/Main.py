@@ -1,3 +1,3 @@
-from telaData import telasDeData
+from tela_inicio import primeira_tela
 
-telasDeData.primeiraTela()
+primeira_tela.tela_primaria()

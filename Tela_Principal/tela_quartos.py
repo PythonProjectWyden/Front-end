@@ -1,7 +1,7 @@
 from tkinter import *
 import tkinter as tk
 from database import *
-import telaResumo
+import tela_resumo
 import os
 from tkinter import messagebox
 import datetime
@@ -125,11 +125,8 @@ class Cadastro:
             database.update_occupied(1, cpf)
             telaTres.destroy()
             telaDois.destroy()
-            telaResumo.TelaDeResumo.quartaTela(cpf,quarto)
+            tela_resumo.TelaDeResumo.quartaTela(cpf,quarto)
             os.remove("dates.txt")
-            today = datetime.datetime.now()
-            if((today.strftime("%d") and today.strftime("%m")) > str(database.select_all_checkout())):
-                database.delete_room_number(quarto)
             
         telaTres = tk.Tk()
         telaTres.geometry("525x450")

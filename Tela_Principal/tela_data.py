@@ -1,5 +1,5 @@
 import tkinter as tk
-import telaQuartos
+import tela_quartos
 from tkinter import *
 from database import *
 from tkcalendar import DateEntry
@@ -19,7 +19,7 @@ class telasDeData:
                 else:
                     telaUm.destroy()
                     database.insert_room(NONE,NONE,NONE,NONE,NONE,0)
-                    telaQuartos.telasDeQuartos.segundaTela()
+                    tela_quartos.telasDeQuartos.segundaTela()
                 
         telaUm = tk.Tk()
         telaUm.geometry("300x300")
@@ -57,5 +57,3 @@ class telasDeData:
         continuar = Button(telaUm,text="Salvar Datas", bg="dark blue",fg="white", width=8, height=2,command=saveDates)
         continuar.pack()
         continuar.place(x=120,y=250)
-
-        telaUm.mainloop()
