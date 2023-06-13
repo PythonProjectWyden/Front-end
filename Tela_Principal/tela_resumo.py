@@ -6,9 +6,9 @@ database = RoomDB()
 class TelaDeResumo:
     def quartaTela(cpf,quarto):
         telaQuatro = tk.Tk()
-        telaQuatro.geometry("300x300")
+        telaQuatro.geometry("400x400")
         telaQuatro.minsize(300, 300)
-        telaQuatro.maxsize(300, 300)
+        telaQuatro.maxsize(600, 600)
         telaQuatro.title("Resumo")
 
         rotuloDoTitulo = Label(telaQuatro, bg="dark blue", width=180, height=6)
