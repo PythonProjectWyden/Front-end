@@ -12,11 +12,11 @@ class telasDeData:
             with open('dates.txt', 'a') as f:
                 checkin1 = checkin_date.get_date()
                 checkout1 = checkout_date.get_date()
-                f.write("{}:{}".format(checkin1,checkout1))
-                f.close()
                 if(checkin1 > checkout1):
                     return
                 else:
+                    f.write("{}:{}".format(checkin1,checkout1))
+                    f.close()
                     telaUm.destroy()
                     database.insert_room(NONE,NONE,NONE,NONE,NONE,0)
                     tela_quartos.telasDeQuartos.segundaTela()

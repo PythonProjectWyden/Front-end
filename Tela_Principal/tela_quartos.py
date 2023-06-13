@@ -138,7 +138,7 @@ class Cadastro:
         rotuloDoTitulo = Label(telaTres, bg="dark blue", width=180, height=6)
         rotuloDoTitulo.pack()
             
-        nameLabelRoom = Label(telaTres, text="quarto:"+quarto ,bg="dark blue" ,fg="white")
+        nameLabelRoom = Label(telaTres, text="quarto: "+quarto ,bg="dark blue" ,fg="white")
         nameLabelRoom.pack()
         nameLabelRoom.configure(font=Font_tuple)
         nameLabelRoom.place(x=10, y=30)

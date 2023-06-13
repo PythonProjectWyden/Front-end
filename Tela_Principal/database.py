@@ -95,17 +95,17 @@ class RoomDB:
         self.cursor.execute(self.SELECT_ALL_CPF_QUERY,)
         return self.cursor.fetchall()
     
-    def select_all_checkin(self):
-        self.cursor.execute(self.SELECT_ALL_CHECKIN_QUERY,)
-        return self.cursor.fetchall()
+    # def select_all_checkin(self):
+    #     self.cursor.execute(self.SELECT_ALL_CHECKIN_QUERY,)
+    #     return self.cursor.fetchall()
     
-    def select_all_checkout(self):
-        self.cursor.execute(self.SELECT_ALL_CHECKOUT_QUERY,)
-        return self.cursor.fetchall()
+    # def select_all_checkout(self):
+    #     self.cursor.execute(self.SELECT_ALL_CHECKOUT_QUERY,)
+    #     return self.cursor.fetchall()
 
-    def select_all_occupied(self, number):
-        self.cursor.execute(self.SELECT_ALL_OCCUPIED_QUERY, (number,))
-        return self.cursor.fetchall()
+    # def select_all_occupied(self, number):
+    #     self.cursor.execute(self.SELECT_ALL_OCCUPIED_QUERY, (number,))
+    #     return self.cursor.fetchall()
     
     def select_occupied_for_dates(self, number, checkin, checkout):
         query = 'SELECT occupied FROM room WHERE number = ? AND check_in <= ? AND check_out >= ?'
